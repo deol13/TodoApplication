@@ -5,11 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class TodoItemTest {
 
     // --------------------------constructor
     @Test
-    public void testConstructorSuccessSentInData(){
+    public void testConstructorSuccessSentInData() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -36,35 +38,6 @@ public class TodoItemTest {
         Assertions.assertEquals(expectedCreator, actualCreator);
     }
 
-    //todo: probably shouldn't work like this.
-    @Test
-    public void testConstructorFailureSentInNull(){
-        // Scenario:
-        Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem item = new TodoItem(1, "Lunch menu", null, null, false, creator);
-
-        // Expected:
-        String expectedTitle = "Lunch menu";
-        String expectedTaskDes = null;
-        LocalDate expectedDeadline = null;
-        boolean expectedDone = false;
-        Person expectedCreator = creator;
-
-        // Actual:
-        String actualTitle = item.getTitle();
-        String actualTaskDes = item.getTaskDescription();
-        LocalDate actualDeadline = item.getDeadLine();
-        boolean actualDone = item.isDone();
-        Person actualCreator = item.getCreator();
-
-        // Verify the result:
-        Assertions.assertEquals(expectedTitle, actualTitle);
-        Assertions.assertEquals(expectedTaskDes, actualTaskDes);
-        Assertions.assertEquals(expectedDeadline, actualDeadline);
-        Assertions.assertEquals(expectedDone, actualDone);
-        Assertions.assertEquals(expectedCreator, actualCreator);
-    }
-    
     // --------------------------getId
     @Test
     public void testGetIdSuccess() {
@@ -118,34 +91,40 @@ public class TodoItemTest {
     }
 
     @Test
-    public void testSetTitleFailureSentInNull() {
+    public void testSetTitle_SentInNull_ThrowException() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        String newTitle = null;
 
         // Expected:
-        String expected = "Lunch menu";
+        String expected = "Title should not be null or empty";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> item.setTitle(newTitle));
 
         // Actual:
-        item.setTitle("");
-        String actual = item.getTitle();
+        String actual = exception.getMessage();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void testSetTitleFailureSentInEmpty() {
+    public void testSetTitle_SentInEmptyString_ThrowException() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        String newTitle = " ";
 
         // Expected:
-        String expected = "Lunch menu";
+        String expected = "Title should not be null or empty";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> item.setTitle(newTitle));
 
         // Actual:
-        item.setTitle(null);
-        String actual = item.getTitle();
+        String actual = exception.getMessage();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -240,17 +219,20 @@ public class TodoItemTest {
     }
 
     @Test
-    public void testSetDeadlineFailureSentInNull() {
+    public void testSetDeadline_SentInNull_ThrowException() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        LocalDate newDate = null;
 
         // Expected:
-        LocalDate expected = LocalDate.now().plusWeeks(1);
+        String expected = "Deadline should not be null";
+
 
         // Actual:
-        item.setDeadLine(null);
-        LocalDate actual = item.getDeadLine();
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> item.setDeadLine(newDate));
+        String actual = exception.getMessage();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);

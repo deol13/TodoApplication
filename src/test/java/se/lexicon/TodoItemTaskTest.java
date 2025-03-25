@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class TodoItemTaskTest {
 
     // --------------------------constructor
@@ -19,28 +21,6 @@ public class TodoItemTaskTest {
         boolean expectedAssigned = true;
         TodoItem expectedTodoItem = todoItem;
         Person expectedAssignee = assignee;
-
-        // Actual:
-        boolean actualAssigned = todoItemTask.isAssigned();
-        TodoItem actualTodoItem = todoItemTask.getTodoItem();
-        Person actualAssignee = todoItemTask.getAssignee();
-
-        // Verify the result:
-        Assertions.assertEquals(expectedAssigned, actualAssigned);
-        Assertions.assertEquals(expectedTodoItem, actualTodoItem);
-        Assertions.assertEquals(expectedAssignee, actualAssignee);
-    }
-
-    //todo: probably shouldn't work like this.
-    @Test
-    public void testConstructorFailureSentInNull() {
-        // Scenario:
-        TodoItemTask todoItemTask = new TodoItemTask(1, null, null);
-
-        // Expected:
-        boolean expectedAssigned = false;
-        TodoItem expectedTodoItem = null;
-        Person expectedAssignee = null;
 
         // Actual:
         boolean actualAssigned = todoItemTask.isAssigned();
@@ -199,18 +179,21 @@ public class TodoItemTaskTest {
     }
 
     @Test
-    public void testSetTodoItemFailureSentNull() {
+    public void testSetTodoItem_SentInNull_ThrowException() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
         TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, assignee);
+        TodoItem newTodoItem = null;
 
         // Expected:
-        TodoItem expected = todoItem;
+        String expected = "todoItem should not be null";
+
 
         // Actual:
-        todoItemTask.setTodoItem(null);
-        TodoItem actual = todoItemTask.getTodoItem();
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> todoItemTask.setTodoItem(newTodoItem));
+        String actual = exception.getMessage();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
