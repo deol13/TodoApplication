@@ -6,6 +6,53 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 
 public class TodoItemTaskTest {
+
+    // --------------------------constructor
+    @Test
+    public void testConstructorSuccessSentInData(){
+        // Scenario:
+        Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
+        TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, assignee);
+
+        // Expected:
+        boolean expectedAssigned = true;
+        TodoItem expectedTodoItem = todoItem;
+        Person expectedAssignee = assignee;
+
+        // Actual:
+        boolean actualAssigned= todoItemTask.isAssigned();
+        TodoItem actualTodoItem = todoItemTask.getTodoItem();
+        Person actualAssignee  = todoItemTask.getAssignee();
+
+        // Verify the result:
+        Assertions.assertEquals(expectedAssigned, actualAssigned);
+        Assertions.assertEquals(expectedTodoItem, actualTodoItem);
+        Assertions.assertEquals(expectedAssignee, actualAssignee);
+    }
+
+    //todo: probably shouldn't work like this.
+    @Test
+    public void testConstructorFailureSentInNull(){
+        // Scenario:
+        TodoItemTask todoItemTask = new TodoItemTask(1, null, null);
+
+        // Expected:
+        boolean expectedAssigned = false;
+        TodoItem expectedTodoItem = null;
+        Person expectedAssignee = null;
+
+        // Actual:
+        boolean actualAssigned= todoItemTask.isAssigned();
+        TodoItem actualTodoItem = todoItemTask.getTodoItem();
+        Person actualAssignee  = todoItemTask.getAssignee();
+
+        // Verify the result:
+        Assertions.assertEquals(expectedAssigned, actualAssigned);
+        Assertions.assertEquals(expectedTodoItem, actualTodoItem);
+        Assertions.assertEquals(expectedAssignee, actualAssignee);
+    }
+
     // --------------------------getId
     @Test
     public void testGetIdSuccess() {

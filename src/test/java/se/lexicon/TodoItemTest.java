@@ -6,19 +6,77 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 
 public class TodoItemTest {
-    //TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, person)TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, person)
+
+    // --------------------------constructor
+    @Test
+    public void testConstructorSuccessSentInData(){
+        // Scenario:
+        Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+
+        // Expected:
+        String expectedTitle = "Lunch menu";
+        String expectedTaskDes = "Make the lunch menu for the week";
+        LocalDate expectedDeadline = LocalDate.now().plusWeeks(1);
+        boolean expectedDone = false;
+        Person expectedCreator = creator;
+
+        // Actual:
+        String actualTitle = item.getTitle();
+        String actualTaskDes = item.getTaskDescription();
+        LocalDate actualDeadline = item.getDeadLine();
+        boolean actualDone = item.isDone();
+        Person actualCreator = item.getCreator();
+
+        // Verify the result:
+        Assertions.assertEquals(expectedTitle, actualTitle);
+        Assertions.assertEquals(expectedTaskDes, actualTaskDes);
+        Assertions.assertEquals(expectedDeadline, actualDeadline);
+        Assertions.assertEquals(expectedDone, actualDone);
+        Assertions.assertEquals(expectedCreator, actualCreator);
+    }
+
+    //todo: probably shouldn't work like this.
+    @Test
+    public void testConstructorFailureSentInNull(){
+        // Scenario:
+        Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        TodoItem item = new TodoItem(1, "Lunch menu", null, null, false, creator);
+
+        // Expected:
+        String expectedTitle = "Lunch menu";
+        String expectedTaskDes = null;
+        LocalDate expectedDeadline = null;
+        boolean expectedDone = false;
+        Person expectedCreator = creator;
+
+        // Actual:
+        String actualTitle = item.getTitle();
+        String actualTaskDes = item.getTaskDescription();
+        LocalDate actualDeadline = item.getDeadLine();
+        boolean actualDone = item.isDone();
+        Person actualCreator = item.getCreator();
+
+        // Verify the result:
+        Assertions.assertEquals(expectedTitle, actualTitle);
+        Assertions.assertEquals(expectedTaskDes, actualTaskDes);
+        Assertions.assertEquals(expectedDeadline, actualDeadline);
+        Assertions.assertEquals(expectedDone, actualDone);
+        Assertions.assertEquals(expectedCreator, actualCreator);
+    }
+    
     // --------------------------getId
     @Test
     public void testGetIdSuccess() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         int expected = 1;
 
         // Actual:
-        int actual = todoItem.getId();
+        int actual = item.getId();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -29,13 +87,13 @@ public class TodoItemTest {
     public void testGetTitleSuccess() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         String expected = "Lunch menu";
 
         // Actual:
-        String actual = todoItem.getTitle();
+        String actual = item.getTitle();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -46,14 +104,14 @@ public class TodoItemTest {
     public void testSetTitleSuccessNewTitle() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         String expected = "Take out the garbage";
 
         // Actual:
-        todoItem.setTitle(expected);
-        String actual = todoItem.getTitle();
+        item.setTitle(expected);
+        String actual = item.getTitle();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -63,14 +121,14 @@ public class TodoItemTest {
     public void testSetTitleFailureSentInNull() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         String expected = "Lunch menu";
 
         // Actual:
-        todoItem.setTitle("");
-        String actual = todoItem.getTitle();
+        item.setTitle("");
+        String actual = item.getTitle();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -80,14 +138,14 @@ public class TodoItemTest {
     public void testSetTitleFailureSentInEmpty() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         String expected = "Lunch menu";
 
         // Actual:
-        todoItem.setTitle(null);
-        String actual = todoItem.getTitle();
+        item.setTitle(null);
+        String actual = item.getTitle();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -98,13 +156,13 @@ public class TodoItemTest {
     public void testGetTaskDescriptionSuccess() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         String expected = "Make the lunch menu for the week";
 
         // Actual:
-        String actual = todoItem.getTaskDescription();
+        String actual = item.getTaskDescription();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -115,14 +173,14 @@ public class TodoItemTest {
     public void testSetTaskDescriptionSuccessNewString() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         String expected = "Two weeks lunch menu";
 
         // Actual:
-        todoItem.setTaskDescription(expected);
-        String actual = todoItem.getTaskDescription();
+        item.setTaskDescription(expected);
+        String actual = item.getTaskDescription();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -132,14 +190,14 @@ public class TodoItemTest {
     public void testSetTaskDescriptionSuccessNull() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         String expected = null;
 
         // Actual:
-        todoItem.setTaskDescription(expected);
-        String actual = todoItem.getTaskDescription();
+        item.setTaskDescription(expected);
+        String actual = item.getTaskDescription();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -150,14 +208,14 @@ public class TodoItemTest {
     public void testGetDeadlineSuccess() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         LocalDate expected = LocalDate.now().plusWeeks(1);
 
         // Actual:
-        todoItem.setDeadLine(expected);
-        LocalDate actual = todoItem.getDeadLine();
+        item.setDeadLine(expected);
+        LocalDate actual = item.getDeadLine();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -168,14 +226,14 @@ public class TodoItemTest {
     public void testSetDeadlineSuccessNewDeadline() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         LocalDate expected = LocalDate.now().plusWeeks(2);
 
         // Actual:
-        todoItem.setDeadLine(expected);
-        LocalDate actual = todoItem.getDeadLine();
+        item.setDeadLine(expected);
+        LocalDate actual = item.getDeadLine();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -185,14 +243,14 @@ public class TodoItemTest {
     public void testSetDeadlineFailureSentInNull() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         LocalDate expected = LocalDate.now().plusWeeks(1);
 
         // Actual:
-        todoItem.setDeadLine(null);
-        LocalDate actual = todoItem.getDeadLine();
+        item.setDeadLine(null);
+        LocalDate actual = item.getDeadLine();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -204,13 +262,13 @@ public class TodoItemTest {
     public void testIsDoneSuccessStartWithFalse() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         boolean expected = false;
 
         // Actual:
-        boolean actual = todoItem.isDone();
+        boolean actual = item.isDone();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -220,13 +278,13 @@ public class TodoItemTest {
     public void testIsDoneSuccessStartWithTrue() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), true, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), true, creator);
 
         // Expected:
         boolean expected = true;
 
         // Actual:
-        boolean actual = todoItem.isDone();
+        boolean actual = item.isDone();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -237,14 +295,14 @@ public class TodoItemTest {
     public void testSetDoneStartWithFalseSetToTrue() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         boolean expected = true;
 
         // Actual:
-        todoItem.setDone(expected);
-        boolean actual = todoItem.isDone();
+        item.setDone(expected);
+        boolean actual = item.isDone();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -254,14 +312,14 @@ public class TodoItemTest {
     public void testSetDoneStartWithTrueSetToFalse() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), true, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), true, creator);
 
         // Expected:
         boolean expected = false;
 
         // Actual:
-        todoItem.setDone(expected);
-        boolean actual = todoItem.isDone();
+        item.setDone(expected);
+        boolean actual = item.isDone();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -273,13 +331,13 @@ public class TodoItemTest {
     public void testGetCreatorSuccessStartWithACreator() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         Person expected = creator;
 
         // Actual:
-        Person actual = todoItem.getCreator();
+        Person actual = item.getCreator();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -288,13 +346,13 @@ public class TodoItemTest {
     @Test
     public void testGetCreatorSuccessStartWithNull() {
         // Scenario:
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
 
         // Expected:
         Person expected = null;
 
         // Actual:
-        Person actual = todoItem.getCreator();
+        Person actual = item.getCreator();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -306,14 +364,14 @@ public class TodoItemTest {
     public void testSetCreatorChangeCreator() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         Person expected = new Person(1, "Johan", "Myrstad", "JohanM@gmail.com");
 
         // Actual:
-        todoItem.setCreator(expected);
-        Person actual = todoItem.getCreator();
+        item.setCreator(expected);
+        Person actual = item.getCreator();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -322,14 +380,14 @@ public class TodoItemTest {
     @Test
     public void testSetCreatorStartWithNullChangeCreator() {
         // Scenario:
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
 
         // Expected:
         Person expected = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
 
         // Actual:
-        todoItem.setCreator(expected);
-        Person actual = todoItem.getCreator();
+        item.setCreator(expected);
+        Person actual = item.getCreator();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -339,14 +397,14 @@ public class TodoItemTest {
     public void testSetCreatorChangeToNull() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         Person expected = null;
 
         // Actual:
-        todoItem.setCreator(expected);
-        Person actual = todoItem.getCreator();
+        item.setCreator(expected);
+        Person actual = item.getCreator();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -357,13 +415,13 @@ public class TodoItemTest {
     public void testIsOverdueNotOverdue() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         boolean expected = false;
 
         // Actual:
-        boolean actual = todoItem.isOverdue();
+        boolean actual = item.isOverdue();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -373,13 +431,13 @@ public class TodoItemTest {
     public void testIsOverdueOverdue() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().minusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().minusWeeks(1), false, creator);
 
         // Expected:
         boolean expected = true;
 
         // Actual:
-        boolean actual = todoItem.isOverdue();
+        boolean actual = item.isOverdue();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -389,13 +447,13 @@ public class TodoItemTest {
     public void testIsOverdueSameDayNotOverdue() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now(), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now(), false, creator);
 
         // Expected:
         boolean expected = false;
 
         // Actual:
-        boolean actual = todoItem.isOverdue();
+        boolean actual = item.isOverdue();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -407,7 +465,7 @@ public class TodoItemTest {
     public void testGetSummary() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
         String expected = "id: 1, title: Lunch menu, description: Make the lunch menu for the week" +
@@ -416,7 +474,7 @@ public class TodoItemTest {
                 + ", creator: " + creator.getFirstName() + " " + creator.getLastName();
 
         // Actual:
-        String actual = todoItem.getSummary();
+        String actual = item.getSummary();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);

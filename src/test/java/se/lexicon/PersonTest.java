@@ -4,6 +4,52 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class PersonTest {
+
+    // --------------------------constructor
+    @Test
+    public void testConstructorSuccessSentInData(){
+        // Scenario:
+        Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+
+        // Expected:
+        String expectedFName = "Dennis";
+        String expectedLName = "Olsen";
+        String expectedEmail = "dOlsen@gmail.com";
+
+        // Actual:
+        String actualFName = person.getFirstName();
+        String actualLName = person.getLastName();
+        String actualEmail = person.getEmail();
+
+        // Verify the result:
+        Assertions.assertEquals(expectedFName, actualFName);
+        Assertions.assertEquals(expectedLName, actualLName);
+        Assertions.assertEquals(expectedEmail, actualEmail);
+    }
+
+    //todo: probably shouldn't work like this.
+    @Test
+    public void testConstructorFailureSentInNull(){
+        // Scenario:
+        Person person = new Person(1, null, null, null);
+
+        // Expected:
+        String expectedFName = null;
+        String expectedLName = null;
+        String expectedEmail = null;
+
+        // Actual:
+        String actualFName = person.getFirstName();
+        String actualLName = person.getLastName();
+        String actualEmail = person.getEmail();
+
+        // Verify the result:
+        Assertions.assertEquals(expectedFName, actualFName);
+        Assertions.assertEquals(expectedLName, actualLName);
+        Assertions.assertEquals(expectedEmail, actualEmail);
+    }
+
+
     // --------------------------getId
     @Test
     public void testGetIdSuccess() {
