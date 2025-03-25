@@ -13,9 +13,9 @@ public class TodoItem {
     //todo: title and deadline can be null in the constructor, fix it!
     TodoItem(int id, String title, String taskDescription, LocalDate deadline, boolean done, Person creator) {
         this.id = id;
-        this.title = title;
+        setTitle(title);
         this.taskDescription = taskDescription;
-        this.deadLine = deadline;
+        setDeadLine(deadline);
         this.done = done;
         this.creator = creator;
     }

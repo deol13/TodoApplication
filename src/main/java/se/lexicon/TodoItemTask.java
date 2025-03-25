@@ -9,7 +9,7 @@ public class TodoItemTask {
     //todo: TodoItem can be null in the constructor, fix it!
     TodoItemTask(int id, TodoItem todoItem, Person assignee) {
         this.id = id;
-        this.todoItem = todoItem;
+        setTodoItem(todoItem);
         this.assignee = assignee;
         assigned = assignee != null;
     }

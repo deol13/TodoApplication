@@ -9,9 +9,9 @@ public class Person {
     //todo: Most of them are not allowed to be null, but they can be in constructor, fix it!
     Person(int id, String firstName, String lastName, String email) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
     }
 
     public int getId() {
