@@ -23,7 +23,7 @@ public class Person {
     }
 
     public void setFirstName(String firstName) {
-        if(firstName != null) {
+        if (firstName != null) {
             this.firstName = firstName;
         }
     }
@@ -33,7 +33,7 @@ public class Person {
     }
 
     public void setLastName(String lastName) {
-        if(lastName != null) {
+        if (lastName != null) {
             this.lastName = lastName;
 
         }
@@ -44,12 +44,12 @@ public class Person {
     }
 
     public void setEmail(String email) {
-        if(email == null)
+        if (email == null)
             return;
         this.email = email;
     }
 
-    public String getSummary(){
+    public String getSummary() {
         return "id: " + id
                 + ", name: " + firstName + " " + lastName
                 + ", email: " + email;
