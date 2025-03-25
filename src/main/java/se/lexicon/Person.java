@@ -23,9 +23,8 @@ public class Person {
     }
 
     public void setFirstName(String firstName) {
-        if (firstName != null) {
-            this.firstName = firstName;
-        }
+        if (firstName == null || firstName.trim().isEmpty()) throw new IllegalArgumentException("FName should not be null or empty");
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -33,10 +32,8 @@ public class Person {
     }
 
     public void setLastName(String lastName) {
-        if (lastName != null) {
-            this.lastName = lastName;
-
-        }
+        if (lastName == null || lastName.trim().isEmpty()) throw new IllegalArgumentException("LName should not be null or empty");
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -44,8 +41,7 @@ public class Person {
     }
 
     public void setEmail(String email) {
-        if (email == null)
-            return;
+        if (email == null || email.trim().isEmpty()) throw new IllegalArgumentException("Email should not be null or empty");
         this.email = email;
     }
 
