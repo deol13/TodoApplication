@@ -9,7 +9,7 @@ public class TodoItemTaskTest {
 
     // --------------------------constructor
     @Test
-    public void testConstructorSuccessSentInData(){
+    public void testConstructorSuccessSentInData() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
@@ -21,9 +21,9 @@ public class TodoItemTaskTest {
         Person expectedAssignee = assignee;
 
         // Actual:
-        boolean actualAssigned= todoItemTask.isAssigned();
+        boolean actualAssigned = todoItemTask.isAssigned();
         TodoItem actualTodoItem = todoItemTask.getTodoItem();
-        Person actualAssignee  = todoItemTask.getAssignee();
+        Person actualAssignee = todoItemTask.getAssignee();
 
         // Verify the result:
         Assertions.assertEquals(expectedAssigned, actualAssigned);
@@ -33,7 +33,7 @@ public class TodoItemTaskTest {
 
     //todo: probably shouldn't work like this.
     @Test
-    public void testConstructorFailureSentInNull(){
+    public void testConstructorFailureSentInNull() {
         // Scenario:
         TodoItemTask todoItemTask = new TodoItemTask(1, null, null);
 
@@ -43,9 +43,9 @@ public class TodoItemTaskTest {
         Person expectedAssignee = null;
 
         // Actual:
-        boolean actualAssigned= todoItemTask.isAssigned();
+        boolean actualAssigned = todoItemTask.isAssigned();
         TodoItem actualTodoItem = todoItemTask.getTodoItem();
-        Person actualAssignee  = todoItemTask.getAssignee();
+        Person actualAssignee = todoItemTask.getAssignee();
 
         // Verify the result:
         Assertions.assertEquals(expectedAssigned, actualAssigned);
@@ -106,20 +106,18 @@ public class TodoItemTaskTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    // --------------------------setAssigned
+    //---------------------------Assigned
     @Test
-    public void testSetAssignedTrueWithAssignee() {
+    public void testAssignedTrueOnObjectCreationWithAssignee() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
         TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, assignee);
-        todoItemTask.setAssigned(false);
 
         // Expected:
         boolean expected = true;
 
         // Actual:
-        todoItemTask.setAssigned(true);
         boolean actual = todoItemTask.isAssigned();
 
         // Verify the result:
@@ -127,17 +125,15 @@ public class TodoItemTaskTest {
     }
 
     @Test
-    public void testSetAssignedTrueWithoutAssignee() {
+    public void testSetAssigneeFalseOnObjectCreationWithoutAssignee() {
         // Scenario:
-        Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
+        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
         TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, null);
 
         // Expected:
         boolean expected = false;
 
         // Actual:
-        todoItemTask.setAssigned(true);
         boolean actual = todoItemTask.isAssigned();
 
         // Verify the result:
@@ -145,21 +141,24 @@ public class TodoItemTaskTest {
     }
 
     @Test
-    public void testSetAssignedFalseWithAssignee() {
+    public void testAssignedSetToTrueOnSuccessfulSetAssignee() {
         // Scenario:
+        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, null);
+
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
-        TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, assignee);
 
         // Expected:
-        boolean expected = false;
+        boolean before = todoItemTask.isAssigned();
+        boolean expected = true;
 
         // Actual:
-        todoItemTask.setAssigned(false);
+        todoItemTask.setAssignee(assignee);
         boolean actual = todoItemTask.isAssigned();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
+        Assertions.assertFalse(before);
     }
 
     // --------------------------getTodoItem
@@ -245,7 +244,6 @@ public class TodoItemTaskTest {
 
         // Expected:
         Person expected = new Person(2, "Johan", "Bengtsson", "JBengtsson@gmail.com");
-        ;
 
         // Actual:
         todoItemTask.setAssignee(expected);
@@ -261,7 +259,6 @@ public class TodoItemTaskTest {
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
         TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, assignee);
-        todoItemTask.setAssigned(true);
 
         // Expected:
         Person expected = null;
@@ -301,7 +298,6 @@ public class TodoItemTaskTest {
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
         TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, assignee);
-        todoItemTask.setAssigned(true);
 
         // Expected:
         String expected = "id: 1, assigned: true, todoItem: Lunch menu, assignee: Dennis Olsen";
