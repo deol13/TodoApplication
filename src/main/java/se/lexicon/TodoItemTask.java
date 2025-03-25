@@ -6,12 +6,10 @@ public class TodoItemTask {
     private TodoItem todoItem;
     private Person assignee;
 
-    //todo: TodoItem can be null in the constructor, fix it!
     TodoItemTask(int id, TodoItem todoItem, Person assignee) {
         this.id = id;
         setTodoItem(todoItem);
-        this.assignee = assignee;
-        assigned = assignee != null;
+        setAssignee(assignee);
     }
 
     public int getId() {
@@ -27,9 +25,8 @@ public class TodoItemTask {
     }
 
     public void setTodoItem(TodoItem todoItem) {
-        if (todoItem != null) {
-            this.todoItem = todoItem;
-        }
+        if (todoItem == null) throw new IllegalArgumentException("todoItem should not be null");
+        this.todoItem = todoItem;
     }
 
     public Person getAssignee() {
@@ -38,7 +35,7 @@ public class TodoItemTask {
 
     public void setAssignee(Person assignee) {
         this.assignee = assignee;
-        assigned = (assignee !=null);
+        assigned = (assignee != null);
     }
 
     public String getSummary() {

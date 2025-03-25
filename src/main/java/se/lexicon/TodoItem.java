@@ -10,7 +10,6 @@ public class TodoItem {
     private boolean done;
     private Person creator;
 
-    //todo: title and deadline can be null in the constructor, fix it!
     TodoItem(int id, String title, String taskDescription, LocalDate deadline, boolean done, Person creator) {
         this.id = id;
         setTitle(title);
@@ -29,9 +28,9 @@ public class TodoItem {
     }
 
     public void setTitle(String title) {
-        if (title != null && !title.isEmpty()) {
-            this.title = title;
-        }
+        if (title == null || title.trim().isEmpty()) throw new IllegalArgumentException("Title should not be null or empty");
+        this.title = title;
+
     }
 
     public String getTaskDescription() {
@@ -47,9 +46,8 @@ public class TodoItem {
     }
 
     public void setDeadLine(LocalDate deadLine) {
-        if (deadLine != null) {
-            this.deadLine = deadLine;
-        }
+        if (deadLine == null) throw new IllegalArgumentException("Deadline should not be null");
+        this.deadLine = deadLine;
     }
 
     public void setDone(boolean done) {
