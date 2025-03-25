@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class PersonTest {
     // --------------------------getId
     @Test
-    public void testGetIdSuccess(){
+    public void testGetIdSuccess() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
 
@@ -35,6 +35,7 @@ public class PersonTest {
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
+
     // --------------------------setFirstName
     @Test
     public void testSetFirstNameSuccess() {
@@ -52,6 +53,7 @@ public class PersonTest {
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testSetFirstNameFailureNullSent() {
         // Scenario:
@@ -84,6 +86,7 @@ public class PersonTest {
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
+
     // --------------------------setLastName
     @Test
     public void testSetLastNameSuccess() {
@@ -101,6 +104,7 @@ public class PersonTest {
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testSetLastNameFailureNullSent() {
         // Scenario:
@@ -133,6 +137,7 @@ public class PersonTest {
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
+
     // --------------------------setEmail
     @Test
     public void testSetEmailSuccess() {
@@ -150,6 +155,7 @@ public class PersonTest {
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testSetEmailFailureNullSent() {
         // Scenario:

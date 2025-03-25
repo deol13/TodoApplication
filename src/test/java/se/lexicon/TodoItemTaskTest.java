@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class TodoItemTaskTest {
     // --------------------------getId
     @Test
-    public void testGetIdSuccess(){
+    public void testGetIdSuccess() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
@@ -18,7 +18,7 @@ public class TodoItemTaskTest {
         int expected = 1;
 
         // Actual:
-        int actual = assignee.getId();
+        int actual = todoItemTask.getId();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -41,6 +41,7 @@ public class TodoItemTaskTest {
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testIsAssignedFalseWithoutAssignee() {
         // Scenario:
@@ -77,6 +78,7 @@ public class TodoItemTaskTest {
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testSetAssignedTrueWithoutAssignee() {
         // Scenario:
@@ -94,6 +96,7 @@ public class TodoItemTaskTest {
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testSetAssignedFalseWithAssignee() {
         // Scenario:
@@ -148,6 +151,7 @@ public class TodoItemTaskTest {
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testSetTodoItemFailureSentNull() {
         // Scenario:
@@ -193,7 +197,8 @@ public class TodoItemTaskTest {
         TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, assignee);
 
         // Expected:
-        Person expected = new Person(2, "Johan", "Bengtsson", "JBengtsson@gmail.com");;
+        Person expected = new Person(2, "Johan", "Bengtsson", "JBengtsson@gmail.com");
+        ;
 
         // Actual:
         todoItemTask.setAssignee(expected);
@@ -202,6 +207,7 @@ public class TodoItemTaskTest {
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void testSetAssigneeSuccessSentInNull() {
         // Scenario:
@@ -220,15 +226,16 @@ public class TodoItemTaskTest {
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
-    public void testSetAssigneeSuccessCheckAssignedIfTrue(){
+    public void testSetAssigneeSuccessCheckAssignedIfTrue() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
         TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, null);
 
         // Expected:
-        boolean before  = todoItemTask.isAssigned();
+        boolean before = todoItemTask.isAssigned();
         boolean expected = true;
 
         // Actual:

@@ -10,6 +10,7 @@ public class TodoItem {
     private boolean done;
     private Person creator;
 
+    //todo: title and deadline can be null in the constructor, fix it!
     TodoItem(int id, String title, String taskDescription, LocalDate deadline, boolean done, Person creator) {
         this.id = id;
         this.title = title;
@@ -70,7 +71,7 @@ public class TodoItem {
     public boolean isOverdue() {
         LocalDate date = LocalDate.now();
 
-        return deadLine.isAfter(date);
+        return date.isAfter(deadLine);
     }
 
     public String getSummary() {

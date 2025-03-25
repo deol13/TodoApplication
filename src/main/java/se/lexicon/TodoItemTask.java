@@ -25,8 +25,7 @@ public class TodoItemTask {
     public void setAssigned(boolean assigned) {
         if (assigned && assignee != null) {
             this.assigned = assigned;
-        }
-        else if (!assigned) {
+        } else if (!assigned) {
             this.assigned = assigned;
         }
 
@@ -48,7 +47,7 @@ public class TodoItemTask {
 
     public void setAssignee(Person assignee) {
         this.assignee = assignee;
-        if ( assignee != null ) {
+        if (assignee != null) {
             assigned = true;
         }
     }
