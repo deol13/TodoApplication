@@ -9,7 +9,7 @@ public class PersonTest {
 
     // --------------------------constructor
     @Test
-    public void testConstructorSuccessSentInData() {
+    public void testConstructor_SentInCorrectData_Success() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
 
@@ -89,7 +89,7 @@ public class PersonTest {
 
     // --------------------------getId
     @Test
-    public void testGetIdSuccess() {
+    public void testGetId_ReturnCorrectData_Success() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
 
@@ -105,7 +105,7 @@ public class PersonTest {
 
     // --------------------------getFirstName
     @Test
-    public void testGetFirstNameSuccess() {
+    public void testGetFirstName_ReturnCorrectData_Success() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
 
@@ -121,7 +121,7 @@ public class PersonTest {
 
     // --------------------------setFirstName
     @Test
-    public void testSetFirstNameSuccess() {
+    public void testSetFirstName_SentInCorrectData_Success() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         String newName = "John";
@@ -177,7 +177,7 @@ public class PersonTest {
 
     // --------------------------getLastName
     @Test
-    public void testGetLastNameSuccess() {
+    public void testGetLastName_ReturnCorrectData_Success() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
 
@@ -193,7 +193,7 @@ public class PersonTest {
 
     // --------------------------setLastName
     @Test
-    public void testSetLastNameSuccess() {
+    public void testSetLastName_SentInCorrectData_Success() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         String newName = "Bengtsson";
@@ -249,7 +249,7 @@ public class PersonTest {
 
     // --------------------------getEmail
     @Test
-    public void testGetEmailSuccess() {
+    public void testGetEmail_ReturnCorrectData_Success() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
 
@@ -265,7 +265,7 @@ public class PersonTest {
 
     // --------------------------setEmail
     @Test
-    public void testSetEmailSuccess() {
+    public void testSetEmail_SentInCorrectData_Success() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         String newEMail = "d89Olsen@gmail.com";
@@ -321,7 +321,7 @@ public class PersonTest {
 
     // --------------------------getSummary
     @Test
-    public void testGetSummarySuccess() {
+    public void testGetSummary_Success() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
 

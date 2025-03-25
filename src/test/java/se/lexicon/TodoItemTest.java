@@ -11,7 +11,7 @@ public class TodoItemTest {
 
     // --------------------------constructor
     @Test
-    public void testConstructorSuccessSentInData() {
+    public void testConstructor_SentInCorrectData_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -81,7 +81,7 @@ public class TodoItemTest {
 
     // --------------------------getId
     @Test
-    public void testGetIdSuccess() {
+    public void testGetId_ReturnCorrectData_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -98,7 +98,7 @@ public class TodoItemTest {
 
     // --------------------------getTitle
     @Test
-    public void testGetTitleSuccess() {
+    public void testGetTitle_ReturnCorrectData_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -115,7 +115,7 @@ public class TodoItemTest {
 
     // --------------------------setTitle
     @Test
-    public void testSetTitleSuccessNewTitle() {
+    public void testSetTitle_SentInCorrectData_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -173,7 +173,7 @@ public class TodoItemTest {
 
     // --------------------------getTaskDescription
     @Test
-    public void testGetTaskDescriptionSuccess() {
+    public void testGetTaskDescription_ReturnCorrectData_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -190,7 +190,7 @@ public class TodoItemTest {
 
     // --------------------------setTaskDescription
     @Test
-    public void testSetTaskDescriptionSuccessNewString() {
+    public void testSetTaskDescription_SentInCorrectData_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -207,7 +207,7 @@ public class TodoItemTest {
     }
 
     @Test
-    public void testSetTaskDescriptionSuccessNull() {
+    public void testSetTaskDescription_SentInNull_TaskDescriptionNowNull() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -225,7 +225,7 @@ public class TodoItemTest {
 
     // --------------------------getDeadLine
     @Test
-    public void testGetDeadlineSuccess() {
+    public void testGetDeadline_ReturnCorrectData_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -243,7 +243,7 @@ public class TodoItemTest {
 
     // --------------------------setDeadLine
     @Test
-    public void testSetDeadlineSuccessNewDeadline() {
+    public void testSetDeadline_SentInCorrectData_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -282,7 +282,7 @@ public class TodoItemTest {
 
     // --------------------------isDone
     @Test
-    public void testIsDoneSuccessStartWithFalse() {
+    public void testIsDoneSuccess_StartWithFalse_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -298,7 +298,7 @@ public class TodoItemTest {
     }
 
     @Test
-    public void testIsDoneSuccessStartWithTrue() {
+    public void testIsDoneSuccess_StartWithTrue_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), true, creator);
@@ -315,7 +315,7 @@ public class TodoItemTest {
 
     // --------------------------setDone
     @Test
-    public void testSetDoneStartWithFalseSetToTrue() {
+    public void testSetDone_StartWithFalse_SetToTrue_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -332,7 +332,7 @@ public class TodoItemTest {
     }
 
     @Test
-    public void testSetDoneStartWithTrueSetToFalse() {
+    public void testSetDone_StartWithTrue_SetToFalse_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), true, creator);
@@ -351,7 +351,7 @@ public class TodoItemTest {
 
     // --------------------------getCreator
     @Test
-    public void testGetCreatorSuccessStartWithACreator() {
+    public void testGetCreator_StartWithACreator_ReturnCreator() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -367,7 +367,7 @@ public class TodoItemTest {
     }
 
     @Test
-    public void testGetCreatorSuccessStartWithNull() {
+    public void testGetCreator_StartWithNullCreator_ReturnNull() {
         // Scenario:
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
 
@@ -384,7 +384,7 @@ public class TodoItemTest {
 
     // --------------------------setCreator
     @Test
-    public void testSetCreatorChangeCreator() {
+    public void testSetCreator_ChangeCreator_ReturnNewCreator() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -401,7 +401,7 @@ public class TodoItemTest {
     }
 
     @Test
-    public void testSetCreatorStartWithNullChangeCreator() {
+    public void testSetCreator_StartWithNullCreator_ChangeCreator_ReturnNewCreator() {
         // Scenario:
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
 
@@ -417,7 +417,7 @@ public class TodoItemTest {
     }
 
     @Test
-    public void testSetCreatorChangeToNull() {
+    public void testSetCreator_ChangeToNull_CreatorIsNowNull() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -435,7 +435,7 @@ public class TodoItemTest {
 
     // --------------------------isOverdue
     @Test
-    public void testIsOverdueNotOverdue() {
+    public void testIsOverdue_DeadlineNotNotOverdue() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
@@ -451,7 +451,7 @@ public class TodoItemTest {
     }
 
     @Test
-    public void testIsOverdueOverdue() {
+    public void testIsOverdue_DeadlineOverdue() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().minusWeeks(1), false, creator);
@@ -467,7 +467,7 @@ public class TodoItemTest {
     }
 
     @Test
-    public void testIsOverdueSameDayNotOverdue() {
+    public void testIsOverdue_SameDay_DeadlineNotOverdue() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now(), false, creator);
@@ -485,7 +485,7 @@ public class TodoItemTest {
 
     // --------------------------getSummary
     @Test
-    public void testGetSummary() {
+    public void testGetSummary_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);

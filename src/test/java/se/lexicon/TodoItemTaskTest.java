@@ -1,6 +1,7 @@
 package se.lexicon;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -11,7 +12,7 @@ public class TodoItemTaskTest {
 
     // --------------------------constructor
     @Test
-    public void testConstructorSuccessSentInData() {
+    public void testConstructor_SentInCorrectData_Success() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
@@ -56,7 +57,7 @@ public class TodoItemTaskTest {
 
     // --------------------------getId
     @Test
-    public void testGetIdSuccess() {
+    public void testGetId_ReturnCorrectData_Success() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
@@ -74,7 +75,7 @@ public class TodoItemTaskTest {
 
     // --------------------------isAssigned
     @Test
-    public void testIsAssignedTrueSentAssigneeInConstructor() {
+    public void testIsAssigned_AssigneeExist_ReturnTrue() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
@@ -91,7 +92,7 @@ public class TodoItemTaskTest {
     }
 
     @Test
-    public void testIsAssignedFalseWithoutAssignee() {
+    public void testIsAssigned_NoAssigneeExist_ReturnFalse() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
@@ -109,7 +110,7 @@ public class TodoItemTaskTest {
 
     //---------------------------Assigned
     @Test
-    public void testAssignedTrueOnObjectCreationWithAssignee() {
+    public void testAssigned_ObjectCreatedWithAssignee_True() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
@@ -126,7 +127,7 @@ public class TodoItemTaskTest {
     }
 
     @Test
-    public void testSetAssigneeFalseOnObjectCreationWithoutAssignee() {
+    public void testSetAssignee_ObjectCreatedWithoutAssignee_False() {
         // Scenario:
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
         TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, null);
@@ -142,7 +143,8 @@ public class TodoItemTaskTest {
     }
 
     @Test
-    public void testAssignedSetToTrueOnSuccessfulSetAssignee() {
+    @DisplayName("Start without assignee then assign a assignee which turns assigned from false to true")
+    public void testAssigned_SetAssignee_AssignedTrue() {
         // Scenario:
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
         TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, null);
@@ -164,7 +166,7 @@ public class TodoItemTaskTest {
 
     // --------------------------getTodoItem
     @Test
-    public void testGetTodoItemSuccess() {
+    public void testGetTodoItem_ReturnCorrectData_Success() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
@@ -182,7 +184,7 @@ public class TodoItemTaskTest {
 
     // --------------------------setTodoItem
     @Test
-    public void testSetTodoItemSuccessSentTodoItem() {
+    public void testSetTodoItem_SentInTodoItem_Success() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
@@ -222,7 +224,7 @@ public class TodoItemTaskTest {
 
     // --------------------------getAssignee
     @Test
-    public void testGetAssigneeSuccess() {
+    public void testGetAssignee_ReturnCorrectData_Success() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
@@ -240,7 +242,7 @@ public class TodoItemTaskTest {
 
     // --------------------------setAssignee
     @Test
-    public void testSetAssigneeSuccessSentInAssignee() {
+    public void testSetAssignee_SentInAssignee_Success() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
@@ -258,7 +260,7 @@ public class TodoItemTaskTest {
     }
 
     @Test
-    public void testSetAssigneeSuccessSentInNull() {
+    public void testSetAssignee_SentInNull_AssigneeIsNowNull() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
@@ -275,29 +277,9 @@ public class TodoItemTaskTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test
-    public void testSetAssigneeSuccessCheckAssignedIfTrue() {
-        // Scenario:
-        Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
-        TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, null);
-
-        // Expected:
-        boolean before = todoItemTask.isAssigned();
-        boolean expected = true;
-
-        // Actual:
-        todoItemTask.setAssignee(assignee);
-        boolean actual = todoItemTask.isAssigned();
-
-        // Verify the result:
-        Assertions.assertEquals(expected, actual);
-        Assertions.assertFalse(before);
-    }
-
     // --------------------------getSummary
     @Test
-    public void testGetSummarySuccess() {
+    public void testGetSummary_Success() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
