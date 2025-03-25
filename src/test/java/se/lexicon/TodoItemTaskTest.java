@@ -33,6 +33,27 @@ public class TodoItemTaskTest {
         Assertions.assertEquals(expectedAssignee, actualAssignee);
     }
 
+    @Test
+    public void testConstructor_SentInNullForTodoItem_ThrowException(){
+        // Scenario:
+        String actual = "";
+
+        // Expected:
+        String expected = "todoItem should not be null";
+
+        // Actual:
+        try{
+            Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+            TodoItemTask todoItemTask = new TodoItemTask(1, null, assignee);
+        }
+        catch (IllegalArgumentException exception) {
+            actual = exception.getMessage();
+        }
+
+        // Verify the result:
+        Assertions.assertEquals(expected, actual);
+    }
+
     // --------------------------getId
     @Test
     public void testGetIdSuccess() {

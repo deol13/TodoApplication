@@ -38,6 +38,47 @@ public class TodoItemTest {
         Assertions.assertEquals(expectedCreator, actualCreator);
     }
 
+    @Test
+    public void testConstructor_SentInNullForTitle_ThrowException(){
+        // Scenario:
+        String actual = "";
+
+        // Expected:
+        String expected = "Title should not be null or empty";
+
+        // Actual:
+        try{
+            Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+            TodoItem item = new TodoItem(1, null, "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
+        }
+        catch (IllegalArgumentException exception) {
+            actual = exception.getMessage();
+        }
+
+        // Verify the result:
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void testConstructor_SentInNullForDeadline_ThrowException(){
+        // Scenario:
+        String actual = "";
+
+        // Expected:
+        String expected = "Deadline should not be null";
+
+        // Actual:
+        try{
+            Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+            TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", null, false, creator);
+        }
+        catch (IllegalArgumentException exception) {
+            actual = exception.getMessage();
+        }
+
+        // Verify the result:
+        Assertions.assertEquals(expected, actual);
+    }
+
     // --------------------------getId
     @Test
     public void testGetIdSuccess() {

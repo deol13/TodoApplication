@@ -29,6 +29,64 @@ public class PersonTest {
         Assertions.assertEquals(expectedEmail, actualEmail);
     }
 
+    @Test
+    public void testConstructor_SentInNullForFirstName_ThrowException(){
+        // Scenario:
+        String actual = "";
+
+        // Expected:
+        String expected = "FName should not be null or empty";
+
+        // Actual:
+        try{
+            Person person = new Person(1, null, "Olsen", "dOlsen@gmail.com");
+        }
+        catch (IllegalArgumentException exception) {
+            actual = exception.getMessage();
+        }
+
+        // Verify the result:
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void testConstructor_SentInNullForLastName_ThrowException(){
+        // Scenario:
+        String actual = "";
+
+        // Expected:
+        String expected = "LName should not be null or empty";
+
+        // Actual:
+        try{
+            Person person = new Person(1, "Dennis", null, "dOlsen@gmail.com");
+        }
+        catch (IllegalArgumentException exception) {
+            actual = exception.getMessage();
+        }
+
+        // Verify the result:
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void testConstructor_SentInNullForEmail_ThrowException(){
+        // Scenario:
+        String actual = "";
+
+        // Expected:
+        String expected = "Email should not be null or empty";
+
+        // Actual:
+        try{
+            Person person = new Person(1, "Dennis", "Olsen", null);
+        }
+        catch (IllegalArgumentException exception) {
+            actual = exception.getMessage();
+        }
+
+        // Verify the result:
+        Assertions.assertEquals(expected, actual);
+    }
+
     // --------------------------getId
     @Test
     public void testGetIdSuccess() {
@@ -88,10 +146,10 @@ public class PersonTest {
         // Expected:
         String expected = "FName should not be null or empty";
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> person.setFirstName(newFirstName));
 
         // Actual:
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> person.setFirstName(newFirstName));
         String actual = exception.getMessage();
 
         // Verify the result:
@@ -107,10 +165,10 @@ public class PersonTest {
         // Expected:
         String expected = "FName should not be null or empty";
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> person.setFirstName(newFirstName));
 
         // Actual:
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> person.setFirstName(newFirstName));
         String actual = exception.getMessage();
 
         // Verify the result:
@@ -160,10 +218,10 @@ public class PersonTest {
         // Expected:
         String expected = "LName should not be null or empty";
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> person.setLastName(newLastName));
 
         // Actual:
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> person.setLastName(newLastName));
         String actual = exception.getMessage();
 
         // Verify the result:
@@ -179,10 +237,10 @@ public class PersonTest {
         // Expected:
         String expected = "LName should not be null or empty";
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> person.setLastName(newLastName));
 
         // Actual:
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> person.setLastName(newLastName));
         String actual = exception.getMessage();
 
         // Verify the result:
@@ -232,10 +290,10 @@ public class PersonTest {
         // Expected:
         String expected = "Email should not be null or empty";
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> person.setEmail(newEmail));
 
         // Actual:
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> person.setEmail(newEmail));
         String actual = exception.getMessage();
 
         // Verify the result:
@@ -251,10 +309,10 @@ public class PersonTest {
         // Expected:
         String expected = "Email should not be null or empty";
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> person.setEmail(newEmail));
 
         // Actual:
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> person.setEmail(newEmail));
         String actual = exception.getMessage();
 
         // Verify the result:
