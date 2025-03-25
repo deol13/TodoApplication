@@ -3,11 +3,13 @@ package se.lexicon;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class PersonTest {
 
     // --------------------------constructor
     @Test
-    public void testConstructorSuccessSentInData(){
+    public void testConstructorSuccessSentInData() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
 
@@ -26,29 +28,6 @@ public class PersonTest {
         Assertions.assertEquals(expectedLName, actualLName);
         Assertions.assertEquals(expectedEmail, actualEmail);
     }
-
-    //todo: probably shouldn't work like this.
-    @Test
-    public void testConstructorFailureSentInNull(){
-        // Scenario:
-        Person person = new Person(1, null, null, null);
-
-        // Expected:
-        String expectedFName = null;
-        String expectedLName = null;
-        String expectedEmail = null;
-
-        // Actual:
-        String actualFName = person.getFirstName();
-        String actualLName = person.getLastName();
-        String actualEmail = person.getEmail();
-
-        // Verify the result:
-        Assertions.assertEquals(expectedFName, actualFName);
-        Assertions.assertEquals(expectedLName, actualLName);
-        Assertions.assertEquals(expectedEmail, actualEmail);
-    }
-
 
     // --------------------------getId
     @Test
@@ -101,17 +80,38 @@ public class PersonTest {
     }
 
     @Test
-    public void testSetFirstNameFailureNullSent() {
+    public void testSetFirstName_SentInNull_ThrowException() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        String newName = null;
+        String newFirstName = null;
 
         // Expected:
-        String expected = "Dennis";
+        String expected = "FName should not be null or empty";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> person.setFirstName(newFirstName));
 
         // Actual:
-        person.setFirstName(newName);
-        String actual = person.getFirstName();
+        String actual = exception.getMessage();
+
+        // Verify the result:
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSetFirstName_SentInEmptyString_ThrowException() {
+        // Scenario:
+        Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        String newFirstName = " ";
+
+        // Expected:
+        String expected = "FName should not be null or empty";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> person.setFirstName(newFirstName));
+
+        // Actual:
+        String actual = exception.getMessage();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -152,17 +152,38 @@ public class PersonTest {
     }
 
     @Test
-    public void testSetLastNameFailureNullSent() {
+    public void testSetLastName_SentInNull_ThrowException() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        String newName = null;
+        String newLastName = null;
 
         // Expected:
-        String expected = "Olsen";
+        String expected = "LName should not be null or empty";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> person.setLastName(newLastName));
 
         // Actual:
-        person.setLastName(newName);
-        String actual = person.getLastName();
+        String actual = exception.getMessage();
+
+        // Verify the result:
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSetLastName_SentInEmptyString_ThrowException() {
+        // Scenario:
+        Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        String newLastName = " ";
+
+        // Expected:
+        String expected = "LName should not be null or empty";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> person.setLastName(newLastName));
+
+        // Actual:
+        String actual = exception.getMessage();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
@@ -203,17 +224,38 @@ public class PersonTest {
     }
 
     @Test
-    public void testSetEmailFailureNullSent() {
+    public void testSetEmail_SentInNull_ThrowException() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        String newEMail = null;
+        String newEmail = null;
 
         // Expected:
-        String expected = "dOlsen@gmail.com";
+        String expected = "Email should not be null or empty";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> person.setEmail(newEmail));
 
         // Actual:
-        person.setEmail(newEMail);
-        String actual = person.getEmail();
+        String actual = exception.getMessage();
+
+        // Verify the result:
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSetEmail_SentInEmptyString_ThrowException() {
+        // Scenario:
+        Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        String newEmail = " ";
+
+        // Expected:
+        String expected = "Email should not be null or empty";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> person.setEmail(newEmail));
+
+        // Actual:
+        String actual = exception.getMessage();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
