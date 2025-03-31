@@ -38,10 +38,32 @@ public class TodoItemTask {
         assigned = (assignee != null);
     }
 
-    public String getSummary() {
-        return "id: " + id
-                + ", assigned: " + assigned
-                + ", todoItem: " + todoItem.getTitle()
-                + ", assignee: " + assignee.getFirstName() + " " + assignee.getLastName();
+    // Overrides equals from Java.Lang.Object
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other == null) return false;
+        if (this.getClass() != other.getClass()) return false;
+        TodoItemTask user = (TodoItemTask) other;
+        return id == user.id && assigned == user.assigned && todoItem.equals(user.todoItem);
+    }
+
+    // Overrides hashCode from Java.Lang.Object
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + id;
+        hash = 31 * hash * todoItem.hashCode();
+        return hash;
+    }
+
+    // Overrides toString from Java.Lang.Object
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("TodoItemTask ID: ").append(id);
+        sb.append("\nAssigned: ").append(assigned);
+        sb.append("\nTodoItem: ").append(todoItem.toString());
+        return sb.toString();
     }
 }

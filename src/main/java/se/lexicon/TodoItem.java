@@ -72,12 +72,36 @@ public class TodoItem {
         return date.isAfter(deadLine);
     }
 
-    public String getSummary() {
-        return "id: " + id
-                + ", title: " + title
-                + ", description: " + taskDescription
-                + ", deadline: " + deadLine
-                + ", done: " + done
-                + ", creator: " + creator.getFirstName() + " " + creator.getLastName();
+    // Overrides equals from Java.Lang.Object
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other == null) return false;
+        if (this.getClass() != other.getClass()) return false;
+        TodoItem user = (TodoItem) other;
+        return id == user.id && title.equals(user.title) && taskDescription.equals(user.taskDescription) && deadLine.equals(user.deadLine) && done == user.done;
+    }
+
+    // Overrides hashCode from Java.Lang.Object
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + id;
+        hash = 31 * hash * title.hashCode();
+        hash = 31 * hash * taskDescription.hashCode();
+        hash = 31 * hash * deadLine.hashCode();
+        return hash;
+    }
+
+    // Overrides toString from Java.Lang.Object
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("TodoItem ID: ").append(id);
+        sb.append("\nTitle: ").append(title);
+        sb.append("\nTask description: ").append(taskDescription);
+        sb.append("\nDeadline: ").append(deadLine);
+        sb.append("\nDone: ").append(done);
+        return sb.toString();
     }
 }
