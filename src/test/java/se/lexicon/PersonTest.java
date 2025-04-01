@@ -1,9 +1,10 @@
 package se.lexicon;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PersonTest {
 
@@ -319,19 +320,207 @@ public class PersonTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    // --------------------------getSummary
+    // --------------------------toString
     @Test
-    public void testGetSummary_Success() {
+    public void testToString_Success() {
         // Scenario:
         Person person = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
 
         // Expected:
-        String expected = "id: 1, name: Dennis Olsen, email: dOlsen@gmail.com";
+        String expected = "Person ID: 1\nName: Dennis Olsen\nEmail: dOlsen@gmail.com";
 
         // Actual:
-        String actual = person.getSummary();
+        String actual = person.toString();
 
         // Verify the result:
+        Assertions.assertEquals(expected, actual);
+    }
+
+    // --------------------------equal
+    @Test
+    public void testEquals_SecondObjectIsNull_ReturnFalse(){
+        Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        Person person2 = null;
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = person1.equals(person2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is not null but not of the same class")
+    public void testEquals_NotTheSameClass_ReturnFalse(){
+        Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        int secondObject = 2;
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = person1.equals(secondObject);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is of the same class but do not contain the same id.")
+    public void testEquals_IdNotTheSame_ReturnFalse(){
+        Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        Person person2 = new Person(2, "Dennis", "Olsen", "dOlsen@gmail.com");;
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = person1.equals(person2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+    @Test
+    @DisplayName("Second object is of the same class but do not contain the same first name.")
+    public void testEquals_FirstNameNotTheSame_ReturnFalse(){
+        Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        Person person2 = new Person(1, "John", "Olsen", "dOlsen@gmail.com");;
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = person1.equals(person2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is of the same class but do not contain the same last name.")
+    public void testEquals_LastNameNotTheSame_ReturnFalse(){
+        Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        Person person2 = new Person(1, "Dennis", "Bengtsson", "dOlsen@gmail.com");;
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = person1.equals(person2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is of the same class but do not contain the same email.")
+    public void testEquals_EmailNotTheSame_ReturnFalse(){
+        Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        Person person2 = new Person(1, "Dennis", "Olsen", "Dennis@gmail.com");;
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = person1.equals(person2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is exactly the same.")
+    public void testEquals_BothObjectsAreEqual_ReturnTrue(){
+        Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        Person person2 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");;
+
+        // Expected:
+        //boolean expected = true;
+
+        // Actual:
+        boolean actual = person1.equals(person2);
+
+        // Verify the result
+        assertTrue(actual);
+    }
+
+    // --------------------------hashCode
+
+    @Test
+    public void testHashCode_IdNotTheSame_NotEqual(){
+        Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        Person person2 = new Person(2, "Dennis", "Olsen", "dOlsen@gmail.com");;
+
+        // Expected:
+        int expected = person1.hashCode();
+
+        // Actual:
+        int actual = person2.hashCode();
+
+        // Verify the result
+        Assertions.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void testHashCode_FirstNameNotTheSame_NotEqual(){
+        Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        Person person2 = new Person(1, "John", "Olsen", "dOlsen@gmail.com");;
+
+        // Expected:
+        int expected = person1.hashCode();
+
+        // Actual:
+        int actual = person2.hashCode();
+
+        // Verify the result
+        Assertions.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void testHashCode_LastNameNotTheSame_NotEqual(){
+        Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        Person person2 = new Person(1, "Dennis", "Bengtsson", "dOlsen@gmail.com");;
+
+        // Expected:
+        int expected = person1.hashCode();
+
+        // Actual:
+        int actual = person2.hashCode();
+
+        // Verify the result
+        Assertions.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void testHashCode_EmailNotTheSame_NotEqual(){
+        Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        Person person2 = new Person(1, "Dennis", "Olsen", "Dennis@gmail.com");;
+
+        // Expected:
+        int expected = person1.hashCode();
+
+        // Actual:
+        int actual = person2.hashCode();
+
+        // Verify the result
+        Assertions.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void testHashCode_SameObjects_Equal(){
+        Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        Person person2 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");;
+
+        // Expected:
+        int expected = person1.hashCode();
+
+        // Actual:
+        int actual = person2.hashCode();
+
+        // Verify the result
         Assertions.assertEquals(expected, actual);
     }
 }

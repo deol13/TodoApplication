@@ -1,11 +1,12 @@
 package se.lexicon;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TodoItemTest {
 
@@ -483,25 +484,229 @@ public class TodoItemTest {
     }
 
 
-    // --------------------------getSummary
+    // --------------------------toString
     @Test
-    public void testGetSummary_Success() {
+    public void testToString_Success() {
         // Scenario:
         Person creator = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem item = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, creator);
 
         // Expected:
-        String expected = "id: 1, title: Lunch menu, description: Make the lunch menu for the week" +
-                ", deadline: " + LocalDate.now().plusWeeks(1)
-                + ", done: false"
-                + ", creator: " + creator.getFirstName() + " " + creator.getLastName();
+        String expected = "TodoItem ID: 1" +
+                "\nTitle: Lunch menu" +
+                "\nTask description: Make the lunch menu for the week" +
+                "\nDeadline: "+ LocalDate.now().plusWeeks(1) +
+                "\nDone: false";
 
         // Actual:
-        String actual = item.getSummary();
+        String actual = item.toString();
 
         // Verify the result:
         Assertions.assertEquals(expected, actual);
     }
 
+    // --------------------------equal: Person class isn't checked
+    @Test
+    public void testEquals_SecondObjectIsNull_ReturnFalse(){
+        TodoItem item1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item2 = null;
 
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = item1.equals(item2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is not null but not of the same class")
+    public void testEquals_NotTheSameClass_ReturnFalse(){
+        TodoItem item1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        int secondObject = 2;
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = item1.equals(secondObject);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is of the same class but do not contain the same id.")
+    public void testEquals_IdNotTheSame_ReturnFalse(){
+        TodoItem item1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item2 = new TodoItem(2, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = item1.equals(item2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is of the same class but do not contain the same first name.")
+    public void testEquals_TitleNotTheSame_ReturnFalse(){
+        TodoItem item1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item2 = new TodoItem(1, "Shoe repair", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = item1.equals(item2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is of the same class but do not contain the same last name.")
+    public void testEquals_TaskDescriptionNotTheSame_ReturnFalse(){
+        TodoItem item1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item2 = new TodoItem(1, "Lunch menu", "Two weeks menu", LocalDate.now().plusWeeks(1), false, null);
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = item1.equals(item2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is of the same class but do not contain the same email.")
+    public void testEquals_DeadLineNotTheSame_ReturnFalse(){
+        TodoItem item1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item2 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(2), false, null);
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = item1.equals(item2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is of the same class but do not contain the same email.")
+    public void testEquals_DoneNotTheSame_ReturnFalse(){
+        TodoItem item1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item2 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), true, null);
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = item1.equals(item2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is exactly the same.")
+    public void testEquals_BothObjectsAreEqual_ReturnTrue(){
+        TodoItem item1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item2 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+
+        // Expected:
+        //boolean expected = true;
+
+        // Actual:
+        boolean actual = item1.equals(item2);
+
+        // Verify the result
+        assertTrue(actual);
+    }
+
+    // --------------------------hashCode: Done is a boolean and doesn't have a hash value. Person class isn't checked in hashcode.
+
+    @Test
+    public void testHashCode_IdNotTheSame_NotEqual(){
+        TodoItem item1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item2 = new TodoItem(2, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+
+        // Expected:
+        int expected = item1.hashCode();
+
+        // Actual:
+        int actual = item2.hashCode();
+
+        // Verify the result
+        Assertions.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void testHashCode_TitleNotTheSame_NotEqual(){
+        TodoItem item1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item2 = new TodoItem(1, "Shoe repair", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+
+        // Expected:
+        int expected = item1.hashCode();
+
+        // Actual:
+        int actual = item2.hashCode();
+
+        // Verify the result
+        Assertions.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void testHashCode_TaskDescriptionNotTheSame_NotEqual(){
+        TodoItem item1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item2 = new TodoItem(1, "Lunch menu", "Two weeks of lunch", LocalDate.now().plusWeeks(1), false, null);
+
+        // Expected:
+        int expected = item1.hashCode();
+
+        // Actual:
+        int actual = item2.hashCode();
+
+        // Verify the result
+        Assertions.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void testHashCode_DeadlineNotTheSame_NotEqual(){
+        TodoItem item1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item2 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(3), false, null);
+
+        // Expected:
+        int expected = item1.hashCode();
+
+        // Actual:
+        int actual = item2.hashCode();
+
+        // Verify the result
+        Assertions.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void testHashCode_SameObjects_Equal(){
+        TodoItem item1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem item2 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        ;
+        // Expected:
+        int expected = item1.hashCode();
+
+        // Actual:
+        int actual = item2.hashCode();
+
+        // Verify the result
+        Assertions.assertEquals(expected, actual);
+    }
 }

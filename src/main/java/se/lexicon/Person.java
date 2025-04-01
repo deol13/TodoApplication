@@ -58,7 +58,7 @@ public class Person {
     // Overrides equals from Java.Lang.Object
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
+        //if (this == other) return true;
         if (other == null) return false;
         if (this.getClass() != other.getClass()) return false;
         Person user = (Person) other;

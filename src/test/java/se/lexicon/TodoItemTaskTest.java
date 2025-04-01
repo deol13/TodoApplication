@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TodoItemTaskTest {
 
@@ -35,7 +35,7 @@ public class TodoItemTaskTest {
     }
 
     @Test
-    public void testConstructor_SentInNullForTodoItem_ThrowException(){
+    public void testConstructor_SentInNullForTodoItem_ThrowException() {
         // Scenario:
         String actual = "";
 
@@ -43,11 +43,10 @@ public class TodoItemTaskTest {
         String expected = "todoItem should not be null";
 
         // Actual:
-        try{
+        try {
             Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
             TodoItemTask todoItemTask = new TodoItemTask(1, null, assignee);
-        }
-        catch (IllegalArgumentException exception) {
+        } catch (IllegalArgumentException exception) {
             actual = exception.getMessage();
         }
 
@@ -277,21 +276,173 @@ public class TodoItemTaskTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    // --------------------------getSummary
+    // --------------------------toString
     @Test
-    public void testGetSummary_Success() {
+    public void testToString_Success() {
         // Scenario:
         Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
         TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
         TodoItemTask todoItemTask = new TodoItemTask(1, todoItem, assignee);
 
         // Expected:
-        String expected = "id: 1, assigned: true, todoItem: Lunch menu, assignee: Dennis Olsen";
+        String expected = "TodoItemTask ID: 1\nAssigned: true\nTodoItem: " + todoItem.toString();
 
         // Actual:
-        String actual = todoItemTask.getSummary();
+        String actual = todoItemTask.toString();
 
         // Verify the result:
+        Assertions.assertEquals(expected, actual);
+    }
+
+    // --------------------------equal: Person object isn't checked.
+    @Test
+    public void testEquals_SecondObjectIsNull_ReturnFalse() {
+        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItemTask todoItemTask1 = new TodoItemTask(1, todoItem, null);
+        TodoItemTask todoItemTask2 = null;
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = todoItemTask1.equals(todoItemTask2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is not null but not of the same class")
+    public void testEquals_NotTheSameClass_ReturnFalse() {
+        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItemTask todoItemTask1 = new TodoItemTask(1, todoItem, null);
+        int secondObject = 2;
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = todoItemTask1.equals(secondObject);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is of the same class but do not contain the same id.")
+    public void testEquals_IdNotTheSame_ReturnFalse() {
+        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItemTask todoItemTask1 = new TodoItemTask(1, todoItem, null);
+        TodoItemTask todoItemTask2 = new TodoItemTask(2, todoItem, null);
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = todoItemTask1.equals(todoItemTask2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is of the same class but do not contain the same first name.")
+    public void testEquals_AssignedNotTheSame_ReturnFalse() {
+        Person assignee = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
+        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, assignee);
+        TodoItemTask todoItemTask1 = new TodoItemTask(1, todoItem, assignee);
+        TodoItemTask todoItemTask2 = new TodoItemTask(1, todoItem, null);
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = todoItemTask1.equals(todoItemTask2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is of the same class but do not contain the same last name.")
+    public void testEquals_TodoItemNotTheSame_ReturnFalse() {
+        TodoItem todoItem1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem todoItem2 = new TodoItem(2, "Shoe Repair", "Repair shoesk", LocalDate.now().plusWeeks(2), false, null);
+        TodoItemTask todoItemTask1 = new TodoItemTask(1, todoItem1, null);
+        TodoItemTask todoItemTask2 = new TodoItemTask(1, todoItem2, null);
+
+        // Expected:
+        //boolean expected = false;
+
+        // Actual:
+        boolean actual = todoItemTask1.equals(todoItemTask2);
+
+        // Verify the result
+        assertFalse(actual);
+    }
+
+    @Test
+    @DisplayName("Second object is exactly the same.")
+    public void testEquals_BothObjectsAreEqual_ReturnTrue() {
+        TodoItem todoItemTask1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem todoItemTask2 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+
+        // Expected:
+        //boolean expected = true;
+
+        // Actual:
+        boolean actual = todoItemTask1.equals(todoItemTask2);
+
+        // Verify the result
+        assertTrue(actual);
+    }
+
+    // --------------------------hashCode: assigned is a boolean and doesn't have a hash value. Person object isn't checked.
+
+    @Test
+    public void testHashCode_IdNotTheSame_NotEqual() {
+        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItemTask todoItemTask1 = new TodoItemTask(1, todoItem, null);
+        TodoItemTask todoItemTask2 = new TodoItemTask(2, todoItem, null);
+
+        // Expected:
+        int expected = todoItemTask1.hashCode();
+
+        // Actual:
+        int actual = todoItemTask2.hashCode();
+
+        // Verify the result
+        Assertions.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void testHashCode_TodoItemNotTheSame_NotEqual() {
+        TodoItem todoItem1 = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItem todoItem2 = new TodoItem(2, "Shoe Repair", "Repair shoesk", LocalDate.now().plusWeeks(2), false, null);
+        TodoItemTask todoItemTask1 = new TodoItemTask(1, todoItem1, null);
+        TodoItemTask todoItemTask2 = new TodoItemTask(1, todoItem2, null);
+
+        // Expected:
+        int expected = todoItemTask1.hashCode();
+
+        // Actual:
+        int actual = todoItemTask2.hashCode();
+
+        // Verify the result
+        Assertions.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void testHashCode_SameObjects_Equal() {
+        TodoItem todoItem = new TodoItem(1, "Lunch menu", "Make the lunch menu for the week", LocalDate.now().plusWeeks(1), false, null);
+        TodoItemTask todoItemTask1 = new TodoItemTask(1, todoItem, null);
+        TodoItemTask todoItemTask2 = new TodoItemTask(1, todoItem, null);
+
+        // Expected:
+        int expected = todoItemTask1.hashCode();
+
+        // Actual:
+        int actual = todoItemTask2.hashCode();
+
+        // Verify the result
         Assertions.assertEquals(expected, actual);
     }
 }
