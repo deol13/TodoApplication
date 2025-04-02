@@ -147,7 +147,6 @@ public class PersonTest {
         // Expected:
         String expected = "FName should not be null or empty";
 
-
         // Actual:
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> person.setFirstName(newFirstName));
@@ -452,7 +451,7 @@ public class PersonTest {
     @Test
     public void testHashCode_IdNotTheSame_NotEqual(){
         Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        Person person2 = new Person(2, "Dennis", "Olsen", "dOlsen@gmail.com");;
+        Person person2 = new Person(2, "Dennis", "Olsen", "dOlsen@gmail.com");
 
         // Expected:
         int expected = person1.hashCode();
@@ -467,7 +466,7 @@ public class PersonTest {
     @Test
     public void testHashCode_FirstNameNotTheSame_NotEqual(){
         Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        Person person2 = new Person(1, "John", "Olsen", "dOlsen@gmail.com");;
+        Person person2 = new Person(1, "John", "Olsen", "dOlsen@gmail.com");
 
         // Expected:
         int expected = person1.hashCode();
@@ -482,7 +481,7 @@ public class PersonTest {
     @Test
     public void testHashCode_LastNameNotTheSame_NotEqual(){
         Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        Person person2 = new Person(1, "Dennis", "Bengtsson", "dOlsen@gmail.com");;
+        Person person2 = new Person(1, "Dennis", "Bengtsson", "dOlsen@gmail.com");
 
         // Expected:
         int expected = person1.hashCode();
@@ -497,7 +496,7 @@ public class PersonTest {
     @Test
     public void testHashCode_EmailNotTheSame_NotEqual(){
         Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        Person person2 = new Person(1, "Dennis", "Olsen", "Dennis@gmail.com");;
+        Person person2 = new Person(1, "Dennis", "Olsen", "Dennis@gmail.com");
 
         // Expected:
         int expected = person1.hashCode();
@@ -512,7 +511,7 @@ public class PersonTest {
     @Test
     public void testHashCode_SameObjects_Equal(){
         Person person1 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
-        Person person2 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");;
+        Person person2 = new Person(1, "Dennis", "Olsen", "dOlsen@gmail.com");
 
         // Expected:
         int expected = person1.hashCode();
