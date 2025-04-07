@@ -3,6 +3,8 @@ package se.lexicon;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import se.lexicon.Model.Person;
+import se.lexicon.Model.TodoItem;
 
 import java.time.LocalDate;
 

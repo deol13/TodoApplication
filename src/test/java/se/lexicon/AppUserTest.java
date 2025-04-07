@@ -3,6 +3,8 @@ package se.lexicon;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import se.lexicon.Model.AppRole;
+import se.lexicon.Model.AppUser;
 
 import static org.junit.jupiter.api.Assertions.*;
 
