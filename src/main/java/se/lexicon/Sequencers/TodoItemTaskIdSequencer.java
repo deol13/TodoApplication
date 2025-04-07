@@ -3,7 +3,7 @@ package se.lexicon.Sequencers;
 public class TodoItemTaskIdSequencer {
     private static int currentId = 0;
 
-    public int nextId(){
+    public static int nextId(){
         return ++currentId;
     }
 
