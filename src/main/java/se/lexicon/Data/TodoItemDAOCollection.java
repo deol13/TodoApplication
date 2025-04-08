@@ -6,6 +6,7 @@ import se.lexicon.Model.TodoItemTask;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 public class TodoItemDAOCollection implements TodoItemDAO{
@@ -23,6 +24,12 @@ public class TodoItemDAOCollection implements TodoItemDAO{
 
     @Override
     public TodoItem findById(int id) {
+        Iterator<TodoItem> itr = todoItemCollection.iterator();
+        while (itr.hasNext()) {
+            TodoItem item = itr.next();
+            if(item.getId() == id)
+                return item;
+        }
         return null;
     }
 
@@ -33,39 +40,58 @@ public class TodoItemDAOCollection implements TodoItemDAO{
 
     @Override
     public Collection<TodoItem> findAllByDoneStatus(boolean done) {
-        Object[] newObjArr = todoItemCollection.stream().filter(obj -> obj.isDone() == done).toArray();
-        return List.of((TodoItem[]) newObjArr);
+        ArrayList<TodoItem> newItems = new ArrayList<>();
+        for (TodoItem task : todoItemCollection) {
+            if(task.isDone() == done)
+                newItems.add(task);
+        }
+        return newItems;
     }
 
     @Override
-    public Collection<TodoItem> findAllByTitleContains(String title) {
-        Object[] newObjArr = todoItemCollection.stream().filter(obj -> obj.getTitle().equals(title)).toArray();
-        return List.of((TodoItem[]) newObjArr);
+    public Collection<TodoItem> findByTitleContains(String title) {
+        ArrayList<TodoItem> newItems = new ArrayList<>();
+        for (TodoItem task : todoItemCollection) {
+            if(task.getTitle().equals(title))
+                newItems.add(task);
+        }
+        return newItems;
     }
 
     @Override
-    public Collection<TodoItem> findAllByPersonId(int personId) {
-        Object[] newObjArr = todoItemCollection.stream().filter(obj -> obj.getCreator().getId() == personId).toArray();
-        return List.of((TodoItem[]) newObjArr);
+    public Collection<TodoItem> findByPersonId(int personId) {
+        ArrayList<TodoItem> newItems = new ArrayList<>();
+        for (TodoItem task : todoItemCollection) {
+            if(task.getCreator() != null && task.getCreator().getId() == personId)
+                newItems.add(task);
+        }
+        return newItems;
     }
 
     @Override
-    public Collection<TodoItem> findAllByDeadlineBefore(LocalDate date) {
-        Object[] newObjArr = todoItemCollection.stream().filter(obj -> obj.getDeadLine().isBefore(date)).toArray();
-        return List.of((TodoItem[]) newObjArr);
+    public Collection<TodoItem> findByDeadlineBefore(LocalDate date) {
+        ArrayList<TodoItem> newItems = new ArrayList<>();
+        for (TodoItem task : todoItemCollection) {
+            if(task.getDeadLine().isBefore(date))
+                newItems.add(task);
+        }
+        return newItems;
     }
 
     @Override
-    public Collection<TodoItem> findAllByDeadlineAfter(LocalDate date) {
-        Object[] newObjArr = todoItemCollection.stream().filter(obj -> obj.getDeadLine().isAfter(date)).toArray();
-        return List.of((TodoItem[]) newObjArr);
+    public Collection<TodoItem> findByDeadlineAfter(LocalDate date) {
+        ArrayList<TodoItem> newItems = new ArrayList<>();
+        for (TodoItem task : todoItemCollection) {
+            if(task.getDeadLine().isAfter(date))
+                newItems.add(task);
+        }
+        return newItems;
     }
 
     @Override
     public void remove(int id) {
-        TodoItem[] arr = (TodoItem[]) todoItemCollection.toArray();
-        for (int i = 0; i < arr.length; i++) {
-            if(arr[i].getId() == id) {
+        for (int i = 0; i < todoItemCollection.size(); i++) {
+            if(todoItemCollection.get(i).getId() == id) {
                 todoItemCollection.remove(i);
                 break;
             }

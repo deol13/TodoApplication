@@ -30,14 +30,22 @@ public class TodoItemTaskDAOCollection implements TodoItemTaskDAO{
 
     @Override
     public Collection<TodoItemTask> findByAssignedStatus(boolean status) {
-        Object[] newObjArr = todoItemTaskCollection.stream().filter(obj -> obj.isAssigned() == status).toArray();
-        return List.of((TodoItemTask[]) newObjArr);
+        ArrayList<TodoItemTask> newTasks = new ArrayList<>();
+        for (TodoItemTask task : todoItemTaskCollection) {
+            if(task.isAssigned() == status)
+                newTasks.add(task);
+        }
+        return newTasks;
     }
 
     @Override
     public Collection<TodoItemTask> findByPersonId(int personId) {
-        Object[] newObjArr = todoItemTaskCollection.stream().filter(obj -> obj.getAssignee().getId() == personId).toArray();
-        return List.of((TodoItemTask[]) newObjArr);
+        ArrayList<TodoItemTask> newTasks = new ArrayList<>();
+        for (TodoItemTask task : todoItemTaskCollection) {
+            if(task.isAssigned() && task.getAssignee().getId() == personId)
+                newTasks.add(task);
+        }
+        return newTasks;
     }
 
     @Override
@@ -52,9 +60,8 @@ public class TodoItemTaskDAOCollection implements TodoItemTaskDAO{
     }
 
     private int findIndexById(int id){
-        TodoItemTask[] arr = (TodoItemTask[]) todoItemTaskCollection.toArray();
-        for (int i = 0; i < arr.length; i++) {
-            if(arr[i].getId() == id)
+        for (int i = 0; i < todoItemTaskCollection.size(); i++) {
+            if(todoItemTaskCollection.get(i).getId() == id)
                 return i;
         }
         return -1;

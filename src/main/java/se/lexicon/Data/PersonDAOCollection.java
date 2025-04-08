@@ -29,8 +29,7 @@ public class PersonDAOCollection implements PersonDAO{
 
     @Override
     public Person findByEmail(String email) {
-        Person[] persons = (Person[]) personCollection.toArray();
-        for (Person p : persons) {
+        for (Person p : personCollection) {
             if(p.getEmail().equals(email))
                 return p;
         }
@@ -49,9 +48,8 @@ public class PersonDAOCollection implements PersonDAO{
     }
 
     private int findIndexById(int id){
-        Person[] arr = (Person[]) personCollection.toArray();
-        for (int i = 0; i < arr.length; i++) {
-            if(arr[i].getId() == id)
+        for (int i = 0; i < personCollection.size(); i++) {
+            if(personCollection.get(i).getId() == id)
                 return i;
         }
         return -1;

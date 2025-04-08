@@ -38,9 +38,8 @@ public class AppUserDAOCollection implements AppUserDAO {
     }
 
     private int findIndexByUserName(String username){
-        AppUser[] arr = (AppUser[]) appUserCollection.toArray();
-        for (int i = 0; i < arr.length; i++) {
-            if(arr[i].getUsername().equals(username))
+        for (int i = 0; i < appUserCollection.size(); i++) {
+            if(appUserCollection.get(i).getUsername().equals(username))
                 return i;
         }
         return -1;
