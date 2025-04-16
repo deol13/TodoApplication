@@ -1,16 +1,15 @@
-package se.lexicon.Data;
+package se.lexicon.Data.Impl;
 
-import se.lexicon.Model.AppUser;
+import se.lexicon.Data.PersonDAO;
 import se.lexicon.Model.Person;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
-public class PersonDAOCollection implements PersonDAO{
+public class PersonDAOImpl implements PersonDAO {
     private ArrayList<Person> personCollection;
 
-    public PersonDAOCollection() {
+    public PersonDAOImpl() {
         personCollection = new ArrayList<Person>();
     }
 

@@ -1,13 +1,14 @@
-package se.lexicon.Data;
+package se.lexicon.Data.Impl;
 
+import se.lexicon.Data.AppUserDAO;
 import se.lexicon.Model.AppUser;
 
 import java.util.*;
 
-public class AppUserDAOCollection implements AppUserDAO {
+public class AppUserDAOImpl implements AppUserDAO {
     private ArrayList<AppUser> appUserCollection;
 
-    public AppUserDAOCollection() {
+    public AppUserDAOImpl() {
         appUserCollection = new ArrayList<AppUser>();
     }
 

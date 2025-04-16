@@ -1,17 +1,15 @@
-package se.lexicon.Data;
+package se.lexicon.Data.Impl;
 
-import se.lexicon.Model.Person;
+import se.lexicon.Data.TodoItemTaskDAO;
 import se.lexicon.Model.TodoItemTask;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Stream;
 
-public class TodoItemTaskDAOCollection implements TodoItemTaskDAO{
+public class TodoItemTaskDAOImpl implements TodoItemTaskDAO {
     private ArrayList<TodoItemTask> todoItemTaskCollection;
 
-    public TodoItemTaskDAOCollection(){
+    public TodoItemTaskDAOImpl(){
         todoItemTaskCollection = new ArrayList<TodoItemTask>();
     }
 

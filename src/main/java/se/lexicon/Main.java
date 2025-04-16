@@ -1,15 +1,14 @@
 package se.lexicon;
 
-import se.lexicon.Data.AppUserDAOCollection;
-import se.lexicon.Data.PersonDAOCollection;
-import se.lexicon.Data.TodoItemDAOCollection;
-import se.lexicon.Data.TodoItemTaskDAOCollection;
+import se.lexicon.Data.Impl.AppUserDAOImpl;
+import se.lexicon.Data.Impl.PersonDAOImpl;
+import se.lexicon.Data.Impl.TodoItemDAOImpl;
+import se.lexicon.Data.Impl.TodoItemTaskDAOImpl;
 import se.lexicon.Model.*;
 import se.lexicon.Sequencers.TodoItemIdSequencer;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,7 +19,7 @@ public class Main {
     }
 
     public static void appUserDaoCollectionTest() {
-        AppUserDAOCollection appUsers = new AppUserDAOCollection();
+        AppUserDAOImpl appUsers = new AppUserDAOImpl();
         AppUser appUser1 = new AppUser("Dennis Olsen", "123abc", AppRole.ROLE_APP_USER);
         AppUser appUser2 = new AppUser("John Karlsson", "567kjl", AppRole.ROLE_APP_ADMIN);
         AppUser appUser3 = new AppUser("Alice Thorn", "987dfg", AppRole.ROLE_APP_USER);
@@ -49,7 +48,7 @@ public class Main {
     }
 
     public static void todoItemDaoCollectionTest() {
-        TodoItemDAOCollection itemCollection = new TodoItemDAOCollection();
+        TodoItemDAOImpl itemCollection = new TodoItemDAOImpl();
 
         Person person1 = new Person("Dennis", "Olsen", "dennisOlsen@test.com");
         Person person2 = new Person("John", "Karlsson", "johnKarlsson@test.com");
@@ -105,7 +104,7 @@ public class Main {
     }
 
     public static void todoItemTaskDaoCollectionTest(){
-        TodoItemTaskDAOCollection taskCollection = new TodoItemTaskDAOCollection();
+        TodoItemTaskDAOImpl taskCollection = new TodoItemTaskDAOImpl();
 
         Person person1 = new Person("Dennis", "Olsen", "dennisOlsen@test.com");
         Person person2 = new Person("John", "Karlsson", "johnKarlsson@test.com");
@@ -174,7 +173,7 @@ public class Main {
     }
 
     public static void personDaoCollectionTest() {
-        PersonDAOCollection people = new PersonDAOCollection();
+        PersonDAOImpl people = new PersonDAOImpl();
 
         Person person1 = new Person("Dennis", "Olsen", "dennisOlsen@test.com");
         Person person2 = new Person("John", "Karlsson", "johnKarlsson@test.com");
