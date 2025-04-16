@@ -1,9 +1,8 @@
-package se.lexicon;
+package se.lexicon.Model;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import se.lexicon.Model.Person;
 import se.lexicon.Sequencers.PersonIdSequencer;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,9 +26,9 @@ public class PersonTest {
         String actualEmail = person.getEmail();
 
         // Verify the result:
-        Assertions.assertEquals(expectedFName, actualFName);
-        Assertions.assertEquals(expectedLName, actualLName);
-        Assertions.assertEquals(expectedEmail, actualEmail);
+        assertEquals(expectedFName, actualFName);
+        assertEquals(expectedLName, actualLName);
+        assertEquals(expectedEmail, actualEmail);
     }
 
     @Test
@@ -49,7 +48,7 @@ public class PersonTest {
         }
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
     @Test
     public void testConstructor_SentInNullForLastName_ThrowException(){
@@ -68,7 +67,7 @@ public class PersonTest {
         }
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
     @Test
     public void testConstructor_SentInNullForEmail_ThrowException(){
@@ -87,7 +86,7 @@ public class PersonTest {
         }
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------getId
@@ -106,7 +105,7 @@ public class PersonTest {
         int actual = person.getId();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
 
         PersonIdSequencer.setCurrentId(currentId);
     }
@@ -124,7 +123,7 @@ public class PersonTest {
         String actual = person.getFirstName();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------setFirstName
@@ -142,7 +141,7 @@ public class PersonTest {
         String actual = person.getFirstName();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -160,7 +159,7 @@ public class PersonTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -179,7 +178,7 @@ public class PersonTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------getLastName
@@ -195,7 +194,7 @@ public class PersonTest {
         String actual = person.getLastName();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------setLastName
@@ -213,7 +212,7 @@ public class PersonTest {
         String actual = person.getLastName();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -232,7 +231,7 @@ public class PersonTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -251,7 +250,7 @@ public class PersonTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------getEmail
@@ -267,7 +266,7 @@ public class PersonTest {
         String actual = person.getEmail();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------setEmail
@@ -285,7 +284,7 @@ public class PersonTest {
         String actual = person.getEmail();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -304,7 +303,7 @@ public class PersonTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -323,7 +322,7 @@ public class PersonTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------toString
@@ -342,7 +341,7 @@ public class PersonTest {
         String actual = person.toString();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
 
         PersonIdSequencer.setCurrentId(currentId);
     }
@@ -493,7 +492,7 @@ public class PersonTest {
         int actual = person2.hashCode();
 
         // Verify the result
-        Assertions.assertNotEquals(expected, actual);
+        assertNotEquals(expected, actual);
     }
 
     @Test
@@ -511,7 +510,7 @@ public class PersonTest {
         int actual = person2.hashCode();
 
         // Verify the result
-        Assertions.assertNotEquals(expected, actual);
+        assertNotEquals(expected, actual);
 
         PersonIdSequencer.setCurrentId(currentId);
     }
@@ -531,7 +530,7 @@ public class PersonTest {
         int actual = person2.hashCode();
 
         // Verify the result
-        Assertions.assertNotEquals(expected, actual);
+        assertNotEquals(expected, actual);
 
         PersonIdSequencer.setCurrentId(currentId);
     }
@@ -551,7 +550,7 @@ public class PersonTest {
         int actual = person2.hashCode();
 
         // Verify the result
-        Assertions.assertNotEquals(expected, actual);
+        assertNotEquals(expected, actual);
         PersonIdSequencer.setCurrentId(currentId);
     }
 
@@ -570,7 +569,7 @@ public class PersonTest {
         int actual = person2.hashCode();
 
         // Verify the result
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
 
         PersonIdSequencer.setCurrentId(currentId);
     }

@@ -1,11 +1,8 @@
-package se.lexicon;
+package se.lexicon.Model;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import se.lexicon.Model.Person;
-import se.lexicon.Model.TodoItem;
-import se.lexicon.Model.TodoItemTask;
 import se.lexicon.Sequencers.TodoItemTaskIdSequencer;
 
 import java.time.LocalDate;
@@ -33,9 +30,9 @@ public class TodoItemTaskTest {
         Person actualAssignee = todoItemTask.getAssignee();
 
         // Verify the result:
-        Assertions.assertEquals(expectedAssigned, actualAssigned);
-        Assertions.assertEquals(expectedTodoItem, actualTodoItem);
-        Assertions.assertEquals(expectedAssignee, actualAssignee);
+        assertEquals(expectedAssigned, actualAssigned);
+        assertEquals(expectedTodoItem, actualTodoItem);
+        assertEquals(expectedAssignee, actualAssignee);
     }
 
     @Test
@@ -55,7 +52,7 @@ public class TodoItemTaskTest {
         }
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------getId
@@ -76,7 +73,7 @@ public class TodoItemTaskTest {
         int actual = todoItemTask.getId();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
 
         TodoItemTaskIdSequencer.setCurrentId(currentId);
     }
@@ -96,7 +93,7 @@ public class TodoItemTaskTest {
         boolean actual = todoItemTask.isAssigned();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -113,7 +110,7 @@ public class TodoItemTaskTest {
         boolean actual = todoItemTask.isAssigned();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     //---------------------------Assigned
@@ -131,7 +128,7 @@ public class TodoItemTaskTest {
         boolean actual = todoItemTask.isAssigned();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -147,7 +144,7 @@ public class TodoItemTaskTest {
         boolean actual = todoItemTask.isAssigned();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -168,8 +165,8 @@ public class TodoItemTaskTest {
         boolean actual = todoItemTask.isAssigned();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
-        Assertions.assertFalse(before);
+        assertEquals(expected, actual);
+        assertFalse(before);
     }
 
     // --------------------------getTodoItem
@@ -187,7 +184,7 @@ public class TodoItemTaskTest {
         TodoItem actual = todoItemTask.getTodoItem();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------setTodoItem
@@ -206,7 +203,7 @@ public class TodoItemTaskTest {
         TodoItem actual = todoItemTask.getTodoItem();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -227,7 +224,7 @@ public class TodoItemTaskTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------getAssignee
@@ -245,7 +242,7 @@ public class TodoItemTaskTest {
         Person actual = todoItemTask.getAssignee();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------setAssignee
@@ -264,7 +261,7 @@ public class TodoItemTaskTest {
         Person actual = todoItemTask.getAssignee();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -282,7 +279,7 @@ public class TodoItemTaskTest {
         Person actual = todoItemTask.getAssignee();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------toString
@@ -307,7 +304,7 @@ public class TodoItemTaskTest {
         // Switch the id back
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
 
         TodoItemTaskIdSequencer.setCurrentId(currentId);
     }
@@ -447,7 +444,7 @@ public class TodoItemTaskTest {
         int actual = todoItemTask2.hashCode();
 
         // Verify the result
-        Assertions.assertNotEquals(expected, actual);
+        assertNotEquals(expected, actual);
     }
 
     @Test
@@ -468,7 +465,7 @@ public class TodoItemTaskTest {
         int actual = todoItemTask2.hashCode();
 
         // Verify the result
-        Assertions.assertNotEquals(expected, actual);
+        assertNotEquals(expected, actual);
 
         TodoItemTaskIdSequencer.setCurrentId(currentId);
     }
@@ -490,7 +487,7 @@ public class TodoItemTaskTest {
         int actual = todoItemTask2.hashCode();
 
         // Verify the result
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
 
         TodoItemTaskIdSequencer.setCurrentId(currentId);
     }

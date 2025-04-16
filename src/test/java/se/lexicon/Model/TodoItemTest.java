@@ -1,12 +1,9 @@
-package se.lexicon;
+package se.lexicon.Model;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import se.lexicon.Model.Person;
-import se.lexicon.Model.TodoItem;
 import se.lexicon.Sequencers.TodoItemIdSequencer;
-import se.lexicon.Sequencers.TodoItemTaskIdSequencer;
 
 import java.time.LocalDate;
 
@@ -36,11 +33,11 @@ public class TodoItemTest {
         Person actualCreator = item.getCreator();
 
         // Verify the result:
-        Assertions.assertEquals(expectedTitle, actualTitle);
-        Assertions.assertEquals(expectedTaskDes, actualTaskDes);
-        Assertions.assertEquals(expectedDeadline, actualDeadline);
-        Assertions.assertEquals(expectedDone, actualDone);
-        Assertions.assertEquals(expectedCreator, actualCreator);
+        assertEquals(expectedTitle, actualTitle);
+        assertEquals(expectedTaskDes, actualTaskDes);
+        assertEquals(expectedDeadline, actualDeadline);
+        assertEquals(expectedDone, actualDone);
+        assertEquals(expectedCreator, actualCreator);
     }
 
     @Test
@@ -61,7 +58,7 @@ public class TodoItemTest {
         }
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
     @Test
     public void testConstructor_SentInNullForDeadline_ThrowException(){
@@ -81,7 +78,7 @@ public class TodoItemTest {
         }
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------getId
@@ -100,7 +97,7 @@ public class TodoItemTest {
         int actual = item.getId();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
 
         TodoItemIdSequencer.setCurrentId(currentId);
     }
@@ -119,7 +116,7 @@ public class TodoItemTest {
         String actual = item.getTitle();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------setTitle
@@ -137,7 +134,7 @@ public class TodoItemTest {
         String actual = item.getTitle();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -157,7 +154,7 @@ public class TodoItemTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -177,7 +174,7 @@ public class TodoItemTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------getTaskDescription
@@ -194,7 +191,7 @@ public class TodoItemTest {
         String actual = item.getTaskDescription();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------setTaskDescription
@@ -212,7 +209,7 @@ public class TodoItemTest {
         String actual = item.getTaskDescription();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -229,7 +226,7 @@ public class TodoItemTest {
         String actual = item.getTaskDescription();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------getDeadLine
@@ -247,7 +244,7 @@ public class TodoItemTest {
         LocalDate actual = item.getDeadLine();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------setDeadLine
@@ -265,7 +262,7 @@ public class TodoItemTest {
         LocalDate actual = item.getDeadLine();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -285,7 +282,7 @@ public class TodoItemTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
 
@@ -303,7 +300,7 @@ public class TodoItemTest {
         boolean actual = item.isDone();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -319,7 +316,7 @@ public class TodoItemTest {
         boolean actual = item.isDone();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------setDone
@@ -337,7 +334,7 @@ public class TodoItemTest {
         boolean actual = item.isDone();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -354,7 +351,7 @@ public class TodoItemTest {
         boolean actual = item.isDone();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
 
@@ -372,7 +369,7 @@ public class TodoItemTest {
         Person actual = item.getCreator();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -387,7 +384,7 @@ public class TodoItemTest {
         Person actual = item.getCreator();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
 
@@ -406,7 +403,7 @@ public class TodoItemTest {
         Person actual = item.getCreator();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -422,7 +419,7 @@ public class TodoItemTest {
         Person actual = item.getCreator();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -439,7 +436,7 @@ public class TodoItemTest {
         Person actual = item.getCreator();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------isOverdue
@@ -456,7 +453,7 @@ public class TodoItemTest {
         boolean actual = item.isOverdue();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -472,7 +469,7 @@ public class TodoItemTest {
         boolean actual = item.isOverdue();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -488,7 +485,7 @@ public class TodoItemTest {
         boolean actual = item.isOverdue();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
 
@@ -513,7 +510,7 @@ public class TodoItemTest {
         String actual = item.toString();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
 
         TodoItemIdSequencer.setCurrentId(currentId);
     }
@@ -685,7 +682,7 @@ public class TodoItemTest {
         int actual = item2.hashCode();
 
         // Verify the result
-        Assertions.assertNotEquals(expected, actual);
+        assertNotEquals(expected, actual);
     }
 
     @Test
@@ -703,7 +700,7 @@ public class TodoItemTest {
         int actual = item2.hashCode();
 
         // Verify the result
-        Assertions.assertNotEquals(expected, actual);
+        assertNotEquals(expected, actual);
 
         TodoItemIdSequencer.setCurrentId(currentId);
     }
@@ -723,7 +720,7 @@ public class TodoItemTest {
         int actual = item2.hashCode();
 
         // Verify the result
-        Assertions.assertNotEquals(expected, actual);
+        assertNotEquals(expected, actual);
 
         TodoItemIdSequencer.setCurrentId(currentId);
     }
@@ -743,7 +740,7 @@ public class TodoItemTest {
         int actual = item2.hashCode();
 
         // Verify the result
-        Assertions.assertNotEquals(expected, actual);
+        assertNotEquals(expected, actual);
 
         TodoItemIdSequencer.setCurrentId(currentId);
     }
@@ -763,7 +760,7 @@ public class TodoItemTest {
         int actual = item2.hashCode();
 
         // Verify the result
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
 
         TodoItemIdSequencer.setCurrentId(currentId);
     }
