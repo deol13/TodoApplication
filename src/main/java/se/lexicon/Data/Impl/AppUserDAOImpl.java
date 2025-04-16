@@ -1,29 +1,31 @@
-package se.lexicon.Data;
+package se.lexicon.Data.Impl;
 
+import se.lexicon.Data.AppUserDAO;
 import se.lexicon.Model.AppUser;
 
 import java.util.*;
 
-public class AppUserDAOCollection implements AppUserDAO {
+public class AppUserDAOImpl implements AppUserDAO<AppUser> {
     private ArrayList<AppUser> appUserCollection;
 
-    public AppUserDAOCollection() {
+    public AppUserDAOImpl() {
         appUserCollection = new ArrayList<AppUser>();
     }
 
     @Override
     public void persist(AppUser appUser) {
         if(appUser == null) throw new IllegalArgumentException("Error: AppUser object can't be null!");
+
+        Optional<AppUser> user = findUserByUserName(appUser.getUsername());
+        if(user.isPresent()) throw new IllegalArgumentException("Error: An app user with that name already exists");
         appUserCollection.add(appUser);
     }
 
     @Override
     public AppUser findByUsername(String username) {
-        int index = findIndexByUserName(username);
-        if(index > -1)
-            return appUserCollection.get(index);
-        else
-            return null;
+        Optional<AppUser> user = findUserByUserName(username);
+
+        return user.orElse(null);
     }
 
     @Override
@@ -33,16 +35,17 @@ public class AppUserDAOCollection implements AppUserDAO {
 
     @Override
     public void remove(String username) {
-        int index = findIndexByUserName(username);
-        if(index > -1) appUserCollection.remove(index);
+        Optional<AppUser> user = findUserByUserName(username);
+        user.ifPresent(appUser -> appUserCollection.remove(appUser));
     }
 
-    private int findIndexByUserName(String username){
-        for (int i = 0; i < appUserCollection.size(); i++) {
-            if(appUserCollection.get(i).getUsername().equals(username))
-                return i;
-        }
-        return -1;
+    private Optional<AppUser> findUserByUserName(String username){
+        List<AppUser> users = appUserCollection.stream().filter(u -> u.getUsername().equals(username)).toList();
+
+        if(users.size() == 1)
+            return Optional.ofNullable(users.get(0));
+
+        return Optional.empty();
     }
 
     //appUserCollection.forEach(i -> {if(i.getUsername().equals(username)) { appUserCollection.remove(i); }}); I can't stop it from removing more than one.
