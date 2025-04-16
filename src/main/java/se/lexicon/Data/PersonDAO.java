@@ -3,11 +3,11 @@ package se.lexicon.Data;
 import se.lexicon.Model.Person;
 import java.util.Collection;
 
-public interface PersonDAO {
+public interface PersonDAO<T> {
 
-    void persist(Person person);
-    Person findById(int id);
-    Person findByEmail (String email);
-    Collection<Person> findAll();
+    void persist(T person);
+    T findById(int id);
+    T findByEmail (String email);
+    Collection<T> findAll();
     void remove(int id);
 }

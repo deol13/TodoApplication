@@ -3,10 +3,10 @@ package se.lexicon.Data;
 import se.lexicon.Model.AppUser;
 import java.util.Collection;
 
-public interface AppUserDAO {
+public interface AppUserDAO<T> {
 
-    void persist(AppUser appUser);
-    AppUser findByUsername(String username);
-    Collection<AppUser> findAll();
+    void persist(T appUser);
+    T findByUsername(String username);
+    Collection<T> findAll();
     void remove(String username);
 }
