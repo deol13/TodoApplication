@@ -1,9 +1,8 @@
-package se.lexicon;
+package se.lexicon.Model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import se.lexicon.Model.Person;
 import se.lexicon.Sequencers.PersonIdSequencer;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,12 +1,9 @@
-package se.lexicon;
+package se.lexicon.Model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import se.lexicon.Model.Person;
-import se.lexicon.Model.TodoItem;
 import se.lexicon.Sequencers.TodoItemIdSequencer;
-import se.lexicon.Sequencers.TodoItemTaskIdSequencer;
 
 import java.time.LocalDate;
 
