@@ -13,9 +13,10 @@ public class AppUserDAOImpl implements AppUserDAO {
     }
 
     @Override
-    public void persist(AppUser appUser) {
+    public AppUser persist(AppUser appUser) {
         if(appUser == null) throw new IllegalArgumentException("Error: AppUser object can't be null!");
         appUserCollection.add(appUser);
+        return appUser;
     }
 
     @Override

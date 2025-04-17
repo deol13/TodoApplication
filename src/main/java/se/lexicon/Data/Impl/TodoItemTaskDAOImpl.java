@@ -14,9 +14,10 @@ public class TodoItemTaskDAOImpl implements TodoItemTaskDAO {
     }
 
     @Override
-    public void persist(TodoItemTask todoItemTask) {
+    public TodoItemTask persist(TodoItemTask todoItemTask) {
         if(todoItemTask == null) throw new IllegalArgumentException("Error: todoItemTask object can't be null!");
         todoItemTaskCollection.add(todoItemTask);
+        return todoItemTask;
     }
 
     @Override
