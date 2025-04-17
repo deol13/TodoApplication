@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         //personDaoCollectionTest();
-        appUserDaoCollectionTest();
-        //todoItemTaskDaoCollectionTest();
+        //appUserDaoCollectionTest();
+        todoItemTaskDaoCollectionTest();
         //todoItemDaoCollectionTest();
     }
 
@@ -108,11 +108,11 @@ public class Main {
 
         Person person1 = new Person("Dennis", "Olsen", "dennisOlsen@test.com");
         Person person2 = new Person("John", "Karlsson", "johnKarlsson@test.com");
-        Person person3 = new Person("Alice", "Thorn", "aliceThorn@test.com");
+        //Person person3 = new Person("Alice", "Thorn", "aliceThorn@test.com");
 
         TodoItem item1 = new TodoItem("Make calender", "Create a new calender", LocalDate.now().plusWeeks(3), false, person1);
         TodoItem item2 = new TodoItem("Make a pie", "Bake a pie", LocalDate.now().minusWeeks(1), false, person2);
-        TodoItem item3 = new TodoItem("Make a cake", "Bake a cake", LocalDate.now().plusWeeks(2), false, person3);
+        TodoItem item3 = new TodoItem("Make a cake", "Bake a cake", LocalDate.now().plusWeeks(2), false, null);
 
         TodoItemTask task1 = new TodoItemTask(item1, person1);
         TodoItemTask task2 = new TodoItemTask(item2, person2);
@@ -128,9 +128,9 @@ public class Main {
         for (TodoItemTask task : taskCollection.findAll()) {
             System.out.print("Task with id: "+task.getId() + ", TodoItem title: "+task.getTodoItem().getTitle());
             if(task.isAssigned())
-                System.out.println(", creators name: " +task.getAssignee().getFirstName());
+                System.out.println(", creator's name: " +task.getAssignee().getFirstName() + ", creator's id: " + task.getAssignee().getId());
             else
-                System.out.println(", creators name: none");
+                System.out.println(", creator's name: none");
 
         }
 
@@ -160,15 +160,15 @@ public class Main {
         ArrayList<TodoItemTask> tasksId5 = new ArrayList<>(taskCollection.findByPersonId(5));
 
         System.out.println("Find by person id 1");
-        tasksAssigned.forEach(t -> System.out.println("Task with id: "+t.getId() + ", TodoItem title: "+t.getTodoItem().getTitle() + ", creators name: " +t.getAssignee().getFirstName()));
+        tasksId1.forEach(t -> System.out.println("Task with id: "+t.getId() + ", TodoItem title: "+t.getTodoItem().getTitle() + ", creators name: " +t.getAssignee().getFirstName()));
         System.out.println();
         System.out.println("Find by person id 5");
-        tasksNotAssigned.forEach(t -> System.out.println("Task with id: "+t.getId() + ", TodoItem title: "+t.getTodoItem().getTitle()));
+        tasksId5.forEach(t -> System.out.println("Task with id: "+t.getId() + ", TodoItem title: "+t.getTodoItem().getTitle()));
 
         // removal
-        taskCollection.findByPersonId(1).remove(5);
-        taskCollection.findByPersonId(1).remove(2);
-        System.out.println("After removal: ");
+        taskCollection.remove(5);
+        taskCollection.remove(2);
+        System.out.println("\nAfter removal: ");
         taskCollection.findAll().forEach(t -> System.out.println("Task with id: "+t.getId() + "TodoItem title: "+t.getTodoItem().getTitle() + ", creator: " + t.isAssigned()));
     }
 

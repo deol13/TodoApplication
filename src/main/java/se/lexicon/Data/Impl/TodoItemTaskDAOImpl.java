@@ -6,8 +6,6 @@ import se.lexicon.Model.TodoItemTask;
 import java.util.ArrayList;
 import java.util.Collection;
 
-//todo: change to steam api
-
 public class TodoItemTaskDAOImpl implements TodoItemTaskDAO<TodoItemTask> {
     private ArrayList<TodoItemTask> todoItemTaskCollection;
 
@@ -30,22 +28,13 @@ public class TodoItemTaskDAOImpl implements TodoItemTaskDAO<TodoItemTask> {
 
     @Override
     public Collection<TodoItemTask> findByAssignedStatus(boolean status) {
-        ArrayList<TodoItemTask> newTasks = new ArrayList<>();
-        for (TodoItemTask task : todoItemTaskCollection) {
-            if(task.isAssigned() == status)
-                newTasks.add(task);
-        }
-        return newTasks;
+        return todoItemTaskCollection.stream().filter(t -> t.isAssigned() == status).toList();
     }
 
+    //todo fix
     @Override
     public Collection<TodoItemTask> findByPersonId(int personId) {
-        ArrayList<TodoItemTask> newTasks = new ArrayList<>();
-        for (TodoItemTask task : todoItemTaskCollection) {
-            if(task.isAssigned() && task.getAssignee().getId() == personId)
-                newTasks.add(task);
-        }
-        return newTasks;
+        return todoItemTaskCollection.stream().filter(t -> t.isAssigned() && t.getAssignee().getId() == personId).toList();
     }
 
     @Override
