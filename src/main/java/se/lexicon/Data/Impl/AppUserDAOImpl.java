@@ -13,12 +13,13 @@ public class AppUserDAOImpl implements AppUserDAO<AppUser> {
     }
 
     @Override
-    public void persist(AppUser appUser) {
+    public AppUser persist(AppUser appUser) {
         if(appUser == null) throw new IllegalArgumentException("Error: AppUser object can't be null!");
 
         Optional<AppUser> user = findUserByUserName(appUser.getUsername());
         if(user.isPresent()) throw new IllegalArgumentException("Error: An app user with that name already exists");
         appUserCollection.add(appUser);
+        return appUser;
     }
 
     @Override

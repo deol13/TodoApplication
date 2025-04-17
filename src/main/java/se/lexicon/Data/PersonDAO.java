@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public interface PersonDAO<T> {
 
-    void persist(T person);
+    T persist(T person);
     T findById(int id);
     T findByEmail (String email);
     Collection<T> findAll();

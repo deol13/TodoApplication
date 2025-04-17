@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public interface TodoItemTaskDAO<T> {
 
-    void persist(T todoItemTask);
+    T persist(T todoItemTask);
     T findById(int id);
     Collection<T> findByAssignedStatus (boolean status);
     Collection<T> findByPersonId (int personId);

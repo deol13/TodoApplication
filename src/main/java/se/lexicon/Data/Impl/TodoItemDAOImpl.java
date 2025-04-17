@@ -15,9 +15,10 @@ public class TodoItemDAOImpl implements TodoItemDAO<TodoItem> {
     }
 
     @Override
-    public void persist(TodoItem todoItem) {
+    public TodoItem persist(TodoItem todoItem) {
         if(todoItem == null) throw new IllegalArgumentException("Error: todoItem object can't be null!");
         todoItemCollection.add(todoItem);
+        return todoItem;
     }
 
     @Override

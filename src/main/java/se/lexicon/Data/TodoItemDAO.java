@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public interface TodoItemDAO<T> {
 
-    void persist(T todoItem);
+    T persist(T todoItem);
     T findById(int id);
     Collection<T> findAll();
     Collection<T> findAllByDoneStatus(boolean done);

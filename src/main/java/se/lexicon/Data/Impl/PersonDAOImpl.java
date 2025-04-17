@@ -17,9 +17,10 @@ public class PersonDAOImpl implements PersonDAO<Person> {
     }
 
     @Override
-    public void persist(Person person) {
+    public Person persist(Person person) {
         if(person == null) throw new IllegalArgumentException("Error: Person object can't be null!");
         personCollection.add(person);
+        return person;
     }
 
     @Override
