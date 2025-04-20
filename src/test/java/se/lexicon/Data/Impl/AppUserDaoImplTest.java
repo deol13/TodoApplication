@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AppUserDaoImplTest {
     @Test
-    @DisplayName("Should save/persist a app user successfully")
+    @DisplayName("Should save/persist an app user successfully")
     void persistAppUserSuccessfully(){
         // Scenario: Create an object of the AppUser class
         AppUser appUserData = new AppUser("testUserName", "testPassword", AppRole.ROLE_APP_USER);
@@ -43,7 +43,7 @@ public class AppUserDaoImplTest {
 
     @Test
     @DisplayName("Should find an app user by username when the app user exists")
-    void findByUsernameReturnsWhenExists() {
+    void findByUsernameAppUserReturnsWhenExists() {
         // Scenario: Create AppUser object, AppUserDAOImpl object then add the AppUser object to the AppUserDAOImpl object
         AppUser appUserData = new AppUser("testUserName", "testPassword", AppRole.ROLE_APP_USER);
         AppUserDAOImpl appUserDAO = new AppUserDAOImpl();
@@ -59,7 +59,7 @@ public class AppUserDaoImplTest {
 
     @Test
     @DisplayName("Should return empty when no app user exists with the given username")
-    void findByUsernameReturnsEmptyWhenNotExists() {
+    void findByUsernameAppUserReturnsEmptyWhenNotExists() {
         // Scenario: Create an AppUserDAOImpl object
         AppUserDAOImpl appUserDAO = new AppUserDAOImpl();
 
