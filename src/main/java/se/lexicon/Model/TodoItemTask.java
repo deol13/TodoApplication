@@ -1,13 +1,15 @@
 package se.lexicon.Model;
 
+import se.lexicon.Sequencers.TodoItemTaskIdSequencer;
+
 public class TodoItemTask {
-    private int id;
+    private final int id;
     private boolean assigned;
     private TodoItem todoItem;
     private Person assignee;
 
-    TodoItemTask(int id, TodoItem todoItem, Person assignee) {
-        this.id = id;
+    public TodoItemTask(TodoItem todoItem, Person assignee) {
+        id = TodoItemTaskIdSequencer.nextId();
         setTodoItem(todoItem);
         setAssignee(assignee);
     }

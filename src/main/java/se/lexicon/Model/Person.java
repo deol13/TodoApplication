@@ -1,7 +1,9 @@
 package se.lexicon.Model;
 
+import se.lexicon.Sequencers.PersonIdSequencer;
+
 public class Person {
-    private int id;
+    private final int id; //todo: Change to sequencer
     private String firstName;
     private String lastName;
     private String email;
@@ -9,8 +11,8 @@ public class Person {
     private AppUser credentials;
 
     //todo: Most of them are not allowed to be null, but they can be in constructor, fix it!
-    Person(int id, String firstName, String lastName, String email) {
-        this.id = id;
+    public Person(String firstName, String lastName, String email) {
+        id = PersonIdSequencer.nextId();
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);

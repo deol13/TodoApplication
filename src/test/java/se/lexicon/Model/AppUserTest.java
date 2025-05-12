@@ -1,10 +1,8 @@
-package se.lexicon;
+package se.lexicon.Model;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import se.lexicon.Model.AppRole;
-import se.lexicon.Model.AppUser;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,9 +25,9 @@ public class AppUserTest {
         AppRole actualRole = appUser.getRole();
 
         // Verify the result:
-        Assertions.assertEquals(expectedUserName, actualUsername);
-        Assertions.assertEquals(expectedPassword, actualPassword);
-        Assertions.assertEquals(expectedRole, actualRole);
+        assertEquals(expectedUserName, actualUsername);
+        assertEquals(expectedPassword, actualPassword);
+        assertEquals(expectedRole, actualRole);
     }
 
     // --------------------------Username
@@ -45,7 +43,7 @@ public class AppUserTest {
         String actual = appUser.getUsername();;
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -62,7 +60,7 @@ public class AppUserTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -79,7 +77,7 @@ public class AppUserTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -96,7 +94,7 @@ public class AppUserTest {
         String actual = appUser.getUsername();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------Password
@@ -112,7 +110,7 @@ public class AppUserTest {
         String actual = appUser.getPassword();;
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -129,7 +127,7 @@ public class AppUserTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -146,7 +144,7 @@ public class AppUserTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -163,7 +161,7 @@ public class AppUserTest {
         String actual = appUser.getPassword();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------Role
@@ -179,7 +177,7 @@ public class AppUserTest {
         AppRole actual = appUser.getRole();;
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
     
     @Test
@@ -196,7 +194,7 @@ public class AppUserTest {
         String actual = exception.getMessage();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -213,7 +211,7 @@ public class AppUserTest {
         AppRole actual = appUser.getRole();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------toString
@@ -229,7 +227,7 @@ public class AppUserTest {
         String actual = person.toString();
 
         // Verify the result:
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     // --------------------------equal password isn't checked
@@ -325,7 +323,7 @@ public class AppUserTest {
         int actual = appUser2.hashCode();
 
         // Verify the result
-        Assertions.assertNotEquals(expected, actual);
+        assertNotEquals(expected, actual);
     }
 
     @Test
@@ -340,7 +338,7 @@ public class AppUserTest {
         int actual = appUser2.hashCode();
 
         // Verify the result
-        Assertions.assertNotEquals(expected, actual);
+        assertNotEquals(expected, actual);
     }
 
     @Test
@@ -355,6 +353,6 @@ public class AppUserTest {
         int actual = appUser2.hashCode();
 
         // Verify the result
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 }

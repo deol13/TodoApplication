@@ -1,17 +1,19 @@
 package se.lexicon.Model;
 
+import se.lexicon.Sequencers.TodoItemIdSequencer;
+
 import java.time.LocalDate;
 
 public class TodoItem {
-    private int id;
+    private final int id;
     private String title;
     private String taskDescription;
     private LocalDate deadLine;
     private boolean done;
     private Person creator;
 
-    TodoItem(int id, String title, String taskDescription, LocalDate deadline, boolean done, Person creator) {
-        this.id = id;
+    public TodoItem(String title, String taskDescription, LocalDate deadline, boolean done, Person creator) {
+        id = TodoItemIdSequencer.nextId();
         setTitle(title);
         this.taskDescription = taskDescription;
         setDeadLine(deadline);
